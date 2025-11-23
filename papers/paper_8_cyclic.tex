@@ -52,41 +52,36 @@ In the static Jordan frame ($ds^2 = -dt^2 + dx^2$), there is no Hubble friction 
 where $\omega_{BD}$ is the Brans-Dicke coupling parameter. The first term $\frac{3}{2\phi}\dot{\phi}^2$ is purely geometric. Crucially, unlike the Hubble friction which always opposes motion, this geometric term can act to sustain oscillations.
 
 \section{Numerical Simulation}
-We solved the non-linear equation of motion numerically using a 4th-order Runge-Kutta integrator. We initialized the system in the "expansion" phase and tracked the evolution of $\phi$ over many characteristic time scales.
+We solved the non-linear equation of motion numerically using a 4th-order Runge-Kutta integrator. We probed the phase space structure by varying the initial conditions ($\phi_0$) to determine if the system possesses a unique attractor or a family of solutions.
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=1.0\textwidth]{figures/bounce_cycles.png}
-    \caption{Numerical simulation of the Scalar Field $\phi(t)$. Top: The field exhibits stable, eternal oscillations. The rising phase corresponds to "Expansion" (mass decrease), while the falling phase corresponds to "Contraction" (mass increase). Bottom: The phase space trajectory $(\phi, \dot{\phi})$ forms a closed limit cycle, indicating a stable periodic system.}
-    \label{fig:bounce}
+    \includegraphics[width=1.0\textwidth]{figures/phase_space_families.png}
+    \caption{Phase Space Families. Trajectories for different initial conditions ($\phi_0 = 0.3, 0.4, 0.5, 0.6, 0.7$). The system does not collapse to a single limit cycle (which would imply dissipation) but instead exhibits a continuous family of stable periodic orbits. This confirms that the Isothermal Machian Universe is a conservative Hamiltonian system where information is preserved eternally.}
+    \label{fig:phase_space}
 \end{figure}
 
+\subsection{Conservative Dynamics}
+As shown in Figure \ref{fig:phase_space}, the trajectories form concentric closed loops. This indicates that the system is \textbf{Conservative}, not Dissipative. In dynamical systems terms, the Machian oscillator preserves phase space volume (Liouville's Theorem). This is a crucial feature for a quantum-compatible cosmology, as it implies unitarity (information preservation) at the classical level.
+
+Unlike "Limit Cycle" models which require entropy dumping mechanisms (dissipation) to reset the universe to a specific state, the Machian universe retains memory of its initial "energy." The specific amplitude of the cycle (the maximum size of the universe) is determined by the initial energy of the scalar field.
+
 \subsection{The Turnaround Mechanism}
-As seen in Figure \ref{fig:bounce}, the field does not freeze.
+Despite the conservative nature, the "bouncing" behavior is universal.
 \begin{enumerate}
-    \item \textbf{Expansion Phase:} The vacuum energy pushes $\phi$ outward. Mass drops, redshift increases. This is our current epoch.
-    \item \textbf{The Wall:} As $\phi$ increases, the confining terms ($V_{therm}$ and $V_{rad}$) eventually dominate the decaying vacuum term. The net force becomes attractive.
-    \item \textbf{The Bounce:} $\dot{\phi}$ crosses zero. The universe enters a contraction phase (blueshift).
-    \item \textbf{Reloading:} As $\phi$ decreases, mass increases ($m \propto \phi^{-1/2}$). The universe heats up. Eventually, the $1/\phi^2$ vacuum term becomes singular (the "Big Bang" singularity in GR), acting as a repulsive core that bounces the field back out.
+    \item \textbf{Expansion Phase:} The vacuum energy pushes $\phi$ outward.
+    \item \textbf{The Wall:} The confining terms ($V_{therm}$ and $V_{rad}$) eventually dominate.
+    \item \textbf{The Bounce:} $\dot{\phi}$ crosses zero.
+    \item \textbf{Reloading:} The field returns to the core, bouncing off the $1/\phi^2$ singularity.
 \end{enumerate}
 
 \subsection{Long-Term Stability Analysis}
-A critical question for any cyclic model is stability: do the cycles decay due to entropy production or grow uncontrollably? We performed a high-precision integration of the system for 1000 characteristic time units, corresponding to approximately 56 full cosmic cycles.
+A critical question is stability against drift. We performed a high-precision integration for 1000 characteristic time units (approx. 56 cycles). The results confirm that the amplitude drift is negligible ($< 10^{-8}$ per cycle), verifying that the periodic orbits are stable over cosmological timescales.
 
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=1.0\textwidth]{figures/stability_analysis.png}
-    \caption{Phase Space Stability Portrait over 56 Cosmic Cycles. Left: The trajectory $(\phi, \dot{\phi})$ forms a single, sharp, closed loop with no visible spiraling, indicating a stable limit cycle. Right: The amplitude ($\phi_{max}$) and period remain constant over time. The measured amplitude drift is $< 10^{-8}$ per cycle, consistent with numerical precision limits.}
-    \label{fig:stability}
-\end{figure}
-
-The results, summarized in Figure \ref{fig:stability}, demonstrate extraordinary stability.
-\begin{itemize}
-    \item \textbf{Cycles Simulated:} 56
-    \item \textbf{Mean Amplitude:} $\phi_{max} = 0.636346 \pm 5.98 \times 10^{-7}$
-    \item \textbf{Drift per Cycle:} $-8.1 \times 10^{-9}$ (Negligible)
-\end{itemize}
-This confirms that the Machian oscillator is effectively conservative in the Jordan frame. Unlike models that require complex "attractor" mechanisms to reset entropy, the Isothermal Machian Universe naturally maintains its state through the reversible exchange of potential and kinetic energy between the scalar field and the vacuum/thermal sectors.
+\section{Discussion: The "Fine-Tuned" Amplitude}
+Since the system allows a family of orbits, why is our universe "large"? The amplitude of the oscillation corresponds to the maximum redshift (or minimum mass) achieved.
+The "Wall" potentials ($V \propto \phi$ and $V \propto \ln \phi$) are "soft" walls compared to the "hard" vacuum core ($V \propto \phi^{-2}$). This means that adding energy to the system significantly increases the maximum size (amplitude).
+We propose that the "Initial Condition" was set by a quantum tunneling event from the Plankian era. High-energy tunneling events would naturally populate high-amplitude orbits, leading to macroscopic universes like ours.
 
 \section{Discussion: The Illusion of Heat Death}
 Why does $\Lambda$CDM predict Heat Death? In the Einstein Frame (General Relativity), the conformal transformation $g_{\mu\nu}^E = \phi g_{\mu\nu}^J$ mixes the scalar field into the metric. This introduces a friction term $3H\dot{\phi}$ where $H$ is the expansion rate.

@@ -15,7 +15,7 @@
 \maketitle
 
 \begin{abstract}
-We present a unified scalar-tensor field theory that consistently explains galactic rotation curves, cosmological evolution, black hole thermodynamics, and gravitational lensing without invoking Dark Matter or Dark Energy. The theory is governed by a single action principle involving a Machian scalar field $\phi$ coupled to both matter and the electromagnetic field. We derive the equations of motion and demonstrate that: (1) the scalar field evolution drives a global mass variation $m(t) \propto t^{-1}$, mimicking cosmic expansion; (2) spatial gradients $\nabla \phi$ generate an inertial mass profile $m(r) \propto r^{-1}$ that flattens rotation curves; (3) a non-minimal photon coupling $\lambda_\gamma \ln(\phi/M_{pl}) F^2$ reproduces the gravitational lensing signal of Dark Matter; (4) the event horizon represents a phase transition to a solid state of frozen time; and (5) N-body simulations confirm that the scalar "Fifth Force" reproduces the cosmic web's power spectrum on small scales (slope $\approx -2.54$), indistinguishable from Cold Dark Matter.
+We present a unified scalar-tensor field theory that consistently explains galactic rotation curves, cosmological evolution, black hole thermodynamics, and gravitational lensing without invoking Dark Matter or Dark Energy. The theory is governed by a single action principle involving a Machian scalar field $\phi$ coupled to both matter and the electromagnetic field. We derive the equations of motion and demonstrate that: (1) the scalar field evolution drives a global mass variation $m(t) \propto t^{-1}$, mimicking cosmic expansion; (2) spatial gradients $\nabla \phi$ generate an inertial mass profile $m(r) \propto e^{-r/R}$, making $m_g/m(r)$ grow with radius, which flattens rotation curves; (3) a non-minimal photon coupling $\lambda_\gamma \ln(\phi/M_{pl}) F^2$ reproduces the gravitational lensing signal of Dark Matter; (4) the event horizon represents a phase transition to a solid state of frozen time; and (5) N-body simulations confirm that the scalar "Fifth Force" reproduces the cosmic web's power spectrum on small scales (slope $\approx -2.54$), indistinguishable from Cold Dark Matter. The refractive nature predicts a $\sim 37\%$ deficit in Shapiro time delays compared to Dark Matter.
 \end{abstract}
 
 \section{Introduction}
@@ -34,6 +34,27 @@ The effective Lagrangian density is:
 \begin{equation}
     \mathcal{L} = \frac{R}{16\pi G} - \frac{1}{2}(\partial \phi)^2 - V(\phi) - \mathcal{L}_m(\phi) + \mathcal{L}_\gamma(\phi)
 \end{equation}
+
+\subsection{Comparison with $\Lambda$CDM}
+The IMU reproduces the successes of the standard model while resolving its tensions. A side-by-side comparison is provided in Table \ref{tab:comparison}.
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|l|c|c|}
+        \hline
+        \textbf{Observable} & \textbf{$\Lambda$CDM} & \textbf{Isothermal Machian Universe} \\
+        \hline
+        SN Ia / BAO & Dark Energy ($\Lambda$) & Mass Evolution $m(t) \propto t^{-1}$ \\
+        CMB Peaks & Dark Matter + $\Lambda$ & Conformal Duality \\
+        Galaxy Rotation & Dark Matter Halo & Inertial Mass Profile $m(r)$ \\
+        Lensing Deflection & Dark Matter Halo & Refractive Index $n(r)$ \\
+        Age of Universe & 13.8 Gyr & $> 26$ Gyr (Atomic Time) \\
+        Shapiro Delay & Standard & $\sim 37\%$ Deficit \\
+        \hline
+    \end{tabular}
+    \caption{Comparison of key observables in $\Lambda$CDM and the Machian framework.}
+    \label{tab:comparison}
+\end{table}
 
 \begin{figure}[h]
     \centering
@@ -90,9 +111,13 @@ The orbital velocity is then determined by equating the Newtonian gravitational 
 \begin{equation}
     \frac{G M(r) m_g}{r^2} = \frac{m(r) v^2}{r}
 \end{equation}
-Since gravitational mass $m_g$ and inertial mass $m(r)$ are distinct in this theory ($m_g$ is constant, $m(r)$ drops), we get:
+Since gravitational mass $m_g$ and inertial mass $m(r)$ are distinct in this theory ($m_g$ is constant, $m(r)$ drops), the ratio grows with radius:
 \begin{equation}
-    v^2 = \frac{G M(r)}{r} \left( \frac{m_g}{m(r)} \right) \propto \frac{1}{r} \cdot \frac{1}{e^{-r/R}} \approx \text{const}
+    \frac{m_g}{m(r)} \propto e^{+r/R}
+\end{equation}
+This yields:
+\begin{equation}
+    v^2 = \frac{G M(r)}{r} \left( \frac{m_g}{m(r)} \right) \propto \frac{1}{r} \cdot e^{+r/R} \approx \text{const}
 \end{equation}
 This yields flat rotation curves for $r \gg R$.
 
@@ -127,7 +152,7 @@ Information falling onto the horizon is holographically encoded on this 2D surfa
 \section{Structure Formation: The "Kill Shot"}
 A critical test for any alternative to Dark Matter is the formation of Large Scale Structure (LSS). Standard $\Lambda$CDM simulations rely on the gravitational collapse of cold, collisionless Dark Matter particles to form the cosmic web. In our Machian framework, we propose that the "Fifth Force" arising from scalar field gradients, combined with mass evolution, drives this structure formation.
 
-We performed a high-resolution N-body simulation (Experiment 8) using a \textbf{P3M (Particle-Particle Particle-Mesh)} code to resolve the small-scale clustering dynamics. The simulation evolved $64^3$ particles from $z=50$ to $z=0$ under the influence of Newtonian gravity and the Machian scalar force.
+We performed a high-resolution N-body simulation (Experiment 8) using a \textbf{P3M (Particle-Particle Particle-Mesh)} code to resolve the small-scale clustering dynamics. The simulation evolved $64^3$ particles on a $128^3$ mesh in a $50$ Mpc/h box, initialized with Zel'dovich approximation at $z=50$ with coupling strength $\beta=10.0$, under the influence of Newtonian gravity and the Machian scalar force.
 
 The resulting Matter Power Spectrum $P(k)$ at $z=0$ exhibits a clustering slope on non-linear scales ($k > 1.0$ h/Mpc) of:
 \begin{equation}
@@ -143,7 +168,7 @@ Rather than viewing this as a fine-tuned elementary parameter, we propose that $
 \end{enumerate}
 \subsection{Standard Model Embedding and Constants}
 A key question is how the scalar field $\phi$ couples to the Standard Model (SM) without inducing variations in fundamental dimensionless constants like the fine-structure constant $\alpha$ or the proton-to-electron mass ratio $\mu$.
-In our framework, the scalar field couples to the Higgs sector via a dimension-5 operator:
+In our framework, the scalar field couples to the Higgs sector via a Planck-suppressed linear coupling:
 \begin{equation}
     \mathcal{L}_{Higgs} = - \frac{\phi}{M_{pl}} |H|^2 \implies v_{Higgs} \propto \sqrt{\phi}
 \end{equation}
@@ -167,7 +192,11 @@ In the Isothermal Machian framework, the delay is caused by the effective refrac
     \Delta t_{Mach} = \frac{1}{c} \int_{path} (n(r) - 1) \, dl
 \end{equation}
 
-Using the logarithmic coupling derived in Appendix B, the refractive index profile is $n(r) \approx 1 + K \ln(1+r/R_s)$. While the parameter $K$ is fixed to match the **deflection angle** (gradient $\nabla n$) of a standard NFW halo at the Einstein Radius $R_E$, the **integrated potential** (Shapiro delay) differs significantly. The NFW profile is "cuspy" ($\rho \sim r^{-1}$), while the Machian profile is "isothermal" ($\phi \sim \ln r$), leading to a stiffer potential in the core.
+Using the logarithmic coupling derived in Appendix B, the refractive index profile is $n(r) \approx 1 + K \ln(1+r/R_s)$. The differential time delay between two images at impact parameters $b_1$ and $b_2$ is approximately:
+\begin{equation}
+    \Delta t \approx \frac{D_d D_s}{c D_{ds}} K \ln\left(\frac{b_2}{b_1}\right)
+\end{equation}
+While the parameter $K$ is fixed to match the **deflection angle** (gradient $\nabla n$) of a standard NFW halo at the Einstein Radius $R_E$, the **integrated potential** (Shapiro delay) differs significantly. The NFW profile is "cuspy" ($\rho \sim r^{-1}$), while the Machian profile is "isothermal" ($\phi \sim \ln r$), leading to a stiffer potential in the core.
 
 \textbf{Quantitative Prediction:}
 We modeled a typical massive elliptical lensing galaxy ($M_{vir} = 2 \times 10^{13} M_{\odot}$) and calculated the time delay difference between two lensed images at impact parameters $b_1 = 5$ kpc and $b_2 = 8$ kpc.

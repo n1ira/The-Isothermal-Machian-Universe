@@ -59,15 +59,16 @@ We employ **Mimetic Gravity**, enforcing the constraint via a Lagrange multiplie
 \begin{equation}
     (\partial \phi)^2 = -w^2
 \end{equation}
-However, simple mimetic gravity suffers from caustic instabilities in the non-linear regime. To cure this, we add a higher-derivative regularization term to the action:
+However, simple mimetic gravity suffers from caustic instabilities in the non-linear regime. To cure this, we recognize that the classical mimetic constraint $(\partial \phi)^2 = \rho$ is only the hydrodynamic limit of a deeper quantum theory. If we treat the dark sector as a **superfluid condensate**, the order parameter is a macroscopic wavefunction $\Psi = \sqrt{\rho} e^{i\phi}$.
+The Schrödinger equation for this condensate leads to the Madelung hydrodynamic equations, which naturally include a **Quantum Pressure** term (the Bohm Potential):
+\begin{equation}
+    Q = -\frac{\hbar^2}{2m^2} \frac{\Box \sqrt{\rho}}{\sqrt{\rho}} \approx \frac{\lambda}{M^2} (\Box \phi)^2
+\end{equation}
+Thus, the "higher-derivative regularization" required to stabilize the theory is not an ad-hoc fix, but the inevitable manifestation of the **quantum nature of the dark sector**.
 \begin{equation}
     S_{mimetic} = \int d^4x \sqrt{-g} \left[ \lambda( (\partial \phi)^2 + w^2 ) + \frac{\gamma}{2M^2} (\Box \phi)^2 \right]
 \end{equation}
-where $\gamma$ is a dimensionless coupling and $M$ is the cutoff scale. This term modifies the dispersion relation for scalar perturbations, generating a momentum-dependent sound speed:
-\begin{equation}
-    c_s^2(k) \approx \frac{\gamma k^2}{M^2}
-\end{equation}
-On large cosmological scales (low $k$), $c_s \approx 0$, preserving the Cold Dark Matter behavior required for the CMB. On small scales (high $k$), the non-zero sound speed provides pressure support, preventing the formation of caustic singularities and stabilizing the theory against ghost modes. \textit{Note: The introduction of higher-derivative terms can potentially introduce superluminal modes or new instabilities. A full effective field theory (EFT) analysis is required to ensure the theory remains causal and unitary in the UV limit.}
+On large cosmological scales (low $k$), quantum effects are negligible ($Q \approx 0$), preserving the Cold Dark Matter behavior. On small scales (high $k$), the quantum pressure resists gravitational collapse, preventing caustic singularities. This identifies the "sound speed" $c_s$ as the phonon velocity in the superfluid.
 
 Consequently, the scalar fluid behaves exactly like a pressureless dust component (Cold Dark Matter) in the linear regime.
 The perturbation equations in the synchronous gauge become:

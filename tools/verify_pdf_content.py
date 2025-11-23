@@ -36,9 +36,6 @@ def main():
     print("Verifying PDF Content...")
     
     # Paper 1: Galaxy Rotation
-    # Look for: 209 km/s, 0.89 kpc, 0.98
-    # Note: LaTeX math might be extracted weirdly, so stick to simple numbers/text
-    # Paper 1: Galaxy Rotation
     p1_checks = [
         "Disk Stability Warning",
         "synthetic survey"
@@ -48,6 +45,13 @@ def main():
     p2_checks = [
         "purely mathematical",
         "Caveat"
+    ]
+    
+    # Paper 3: Black Holes
+    p3_checks = [
+        "Holographic Freezing",
+        "KSS Bound",
+        "Perfect Quantum Fluid"
     ]
     
     # Paper 4: Lensing
@@ -61,7 +65,8 @@ def main():
 
     # Paper 6: CMB
     p6_checks = [
-        "Disclaimer"
+        "Disclaimer",
+        "Quantum Pressure"
     ]
 
     # Dilaton
@@ -73,6 +78,7 @@ def main():
     success = True
     success &= verify_pdf("paper_1_galaxy_rotation.pdf", p1_checks)
     success &= verify_pdf("paper_2_cosmology.pdf", p2_checks)
+    success &= verify_pdf("paper_3_black_holes.pdf", p3_checks)
     success &= verify_pdf("paper_4_lensing.pdf", p4_checks)
     success &= verify_pdf("paper_5_unified_field.pdf", p5_checks)
     success &= verify_pdf("paper_6_cmb.pdf", p6_checks)

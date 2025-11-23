@@ -196,6 +196,11 @@ Rather than viewing this as a fine-tuned elementary parameter, we propose that $
 \subsubsection{The QCD Trigger: A Natural Origin for Screening}
 A common criticism of Symmetron models is the fine-tuning of the symmetry breaking scale $M$ and the coupling $\mu$.
 However, in our framework, the scalar field is intimately tied to the mass generation of the standard model (via the Dilaton coupling).
+The scalar field couples to the matter sector via the trace of the energy-momentum tensor $T^\mu_\mu$. The effective interaction term is:
+\begin{equation}
+    \mathcal{L}_{int} \supset \frac{1}{2M^2} \phi^2 T^\mu_\mu
+\end{equation}
+This coupling generates the density-dependent mass term in the effective potential.
 Therefore, it is natural to identify the symmetry breaking scale $M$ with the **QCD Phase Transition scale**, where the bulk of the visible mass is generated.
 \begin{equation}
     M \equiv T_{QCD} \approx 150 \text{ MeV}
@@ -258,6 +263,10 @@ We have subjected the model to rigorous precision tests:
     \item \textbf{Gravitational Wave Friction:} The evolution of the Planck mass in the Jordan frame induces a friction term $\alpha_M \approx -2$. This leads to a specific prediction for the GW luminosity distance:
     \begin{equation}
         d_L^{GW}(z) = \frac{d_L^{EM}(z)}{1+z}
+    \end{equation}
+    Using the standard modified gravity parameterization $\frac{d_L^{GW}}{d_L^{EM}} = \Xi_0 + \frac{1-\Xi_0}{(1+z)^n}$, our theory corresponds to the specific point:
+    \begin{equation}
+        \Xi_0 = 0, \quad n = 1
     \end{equation}
     
     \textbf{Falsifiability Horizon:} We calculated the observational threshold given the sensitivity curves of future detectors. The deviation from General Relativity ($d_L^{GW} = d_L^{EM}$) exceeds $5\sigma$ at **redshift $z > 0.42$**.

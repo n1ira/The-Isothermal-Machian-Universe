@@ -60,7 +60,9 @@ def main():
     # Paper 5: Unified
     p5_checks = [
         "QCD Trigger",
-        "Coincidence"
+        "Coincidence",
+        "DHOST",
+        "falsification test"
     ]
 
     # Paper 6: CMB
@@ -75,6 +77,11 @@ def main():
         "dimensional transmutation"
     ]
     
+    # Paper 8: Cyclic
+    p8_checks = [
+        "Scale-Dependent Unitarity"
+    ]
+    
     success = True
     success &= verify_pdf("paper_1_galaxy_rotation.pdf", p1_checks)
     success &= verify_pdf("paper_2_cosmology.pdf", p2_checks)
@@ -83,6 +90,7 @@ def main():
     success &= verify_pdf("paper_5_unified_field.pdf", p5_checks)
     success &= verify_pdf("paper_6_cmb.pdf", p6_checks)
     success &= verify_pdf("paper_7_dilaton.pdf", dilaton_checks)
+    success &= verify_pdf("paper_8_cyclic.pdf", p8_checks)
     
     if success:
         print("\nSUCCESS: All PDFs contain the verified 'Kill Shot' data.")

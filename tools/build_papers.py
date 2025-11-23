@@ -35,6 +35,11 @@ def generate_figures():
         result_bounce = subprocess.run([sys.executable, "lab/generate_bounce_figure.py"], check=True, capture_output=True, text=True)
         print(result_bounce.stdout)
         
+        # Run the stability analysis for Paper 8
+        print("Running stability analysis...")
+        result_stability = subprocess.run([sys.executable, "lab/analysis_stability.py"], check=True, capture_output=True, text=True)
+        print(result_stability.stdout)
+        
     except subprocess.CalledProcessError as e:
         print("Error generating figures:")
         print(e.stderr)

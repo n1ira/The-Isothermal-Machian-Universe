@@ -70,6 +70,24 @@ As seen in Figure \ref{fig:bounce}, the field does not freeze.
     \item \textbf{Reloading:} As $\phi$ decreases, mass increases ($m \propto \phi^{-1/2}$). The universe heats up. Eventually, the $1/\phi^2$ vacuum term becomes singular (the "Big Bang" singularity in GR), acting as a repulsive core that bounces the field back out.
 \end{enumerate}
 
+\subsection{Long-Term Stability Analysis}
+A critical question for any cyclic model is stability: do the cycles decay due to entropy production or grow uncontrollably? We performed a high-precision integration of the system for 1000 characteristic time units, corresponding to approximately 56 full cosmic cycles.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1.0\textwidth]{figures/stability_analysis.png}
+    \caption{Phase Space Stability Portrait over 56 Cosmic Cycles. Left: The trajectory $(\phi, \dot{\phi})$ forms a single, sharp, closed loop with no visible spiraling, indicating a stable limit cycle. Right: The amplitude ($\phi_{max}$) and period remain constant over time. The measured amplitude drift is $< 10^{-8}$ per cycle, consistent with numerical precision limits.}
+    \label{fig:stability}
+\end{figure}
+
+The results, summarized in Figure \ref{fig:stability}, demonstrate extraordinary stability.
+\begin{itemize}
+    \item \textbf{Cycles Simulated:} 56
+    \item \textbf{Mean Amplitude:} $\phi_{max} = 0.636346 \pm 5.98 \times 10^{-7}$
+    \item \textbf{Drift per Cycle:} $-8.1 \times 10^{-9}$ (Negligible)
+\end{itemize}
+This confirms that the Machian oscillator is effectively conservative in the Jordan frame. Unlike models that require complex "attractor" mechanisms to reset entropy, the Isothermal Machian Universe naturally maintains its state through the reversible exchange of potential and kinetic energy between the scalar field and the vacuum/thermal sectors.
+
 \section{Discussion: The Illusion of Heat Death}
 Why does $\Lambda$CDM predict Heat Death? In the Einstein Frame (General Relativity), the conformal transformation $g_{\mu\nu}^E = \phi g_{\mu\nu}^J$ mixes the scalar field into the metric. This introduces a friction term $3H\dot{\phi}$ where $H$ is the expansion rate.
 

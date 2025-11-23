@@ -1,30 +1,28 @@
 # The Isothermal Machian Universe
-**Status:** ✅ **THEORY CONFIRMED** (November 21, 2025)
+**Status:** ⚠️ **FRAMEWORK PROPOSED** (Under Review)
+See [Scientific Status & Limitations](SCIENTIFIC_STATUS.md) for a critical assessment.
 
 > "The universe is not expanding. Mass is evolving."
 
-## 🏆 The Verdict: A Static Universe
-After a comprehensive series of simulations, including the decisive "Kill Shot" N-body experiment, we have confirmed that the **Isothermal Machian Universe (IMU)** framework is a fully consistent alternative to $\Lambda$CDM. It explains all major cosmological observations without Dark Matter or Dark Energy.
+## 🔭 Project Overview
+The **Isothermal Machian Universe (IMU)** is a unified scalar-tensor framework designed to explore whether "dark sector" phenomena (Dark Matter/Energy) can be explained by modified inertia and vacuum energy. While promising, it is a research agenda with significant open challenges.
 
 ### Key Findings
-1.  **Structure Formation (The Kill Shot):**
-    *   Our P3M N-body simulation (Experiment 8) successfully reproduced the cosmic web's clustering on small scales.
-    *   **Result:** Matter Power Spectrum slope $n_{eff} \approx -2.54$ (Target $< -1.0$), matching Cold Dark Matter predictions.
-    *   *Verdict:* The scalar "Fifth Force" creates virialized halos indistinguishable from Dark Matter.
+1.  **Structure Formation:**
+    *   Our P3M N-body simulation (Experiment 8) reproduced CDM-like clustering on small scales ($n_{eff} \approx -2.54$).
+    *   *Note:* This confirms the mechanism works in principle, but relies on effective parameters.
 
 2.  **Galactic Rotation:**
-    *   Flat rotation curves are a natural consequence of the inertial mass gradient $m(r) \propto r^{-1}$.
-    *   *Verdict:* Validated against SPARC data (NGC 6503).
+    *   Flat rotation curves are modeled via an inertial mass gradient $m(r) \propto e^{-r/R}$.
+    *   *Note:* Validated against SPARC data (NGC 6503), but requires screening to satisfy Solar System bounds.
 
 3.  **Cosmic Expansion:**
-    *   Redshift is an illusion caused by shrinking atomic rulers ($m(t) \propto t^{-1}$).
-    *   **Numerical Proof:** Simulation `static_universe_proof.py` confirms 0.00 magnitude difference between Static Mass Evolution and $\Lambda$CDM Expansion.
-    *   *Verdict:* Resolves the "Early Galaxy" age crisis (Universe age $\approx 30$ Gyr).
+    *   Redshift is modeled as shrinking atomic rulers ($m(t) \propto t^{-1}$) in a static background.
+    *   *Result:* Simulation confirms observational equivalence with $\Lambda$CDM for geometric probes (SNIa).
 
 4.  **Gravitational Lensing:**
-    *   Non-minimal photon coupling $\lambda_\gamma \nabla \phi \cdot F^2$ reproduces the lensing signal of galaxy clusters.
-    *   **Bullet Cluster Test:** Dynamical simulation confirms that the scalar field gradient follows the collisionless stars, not the collisional gas, reproducing the observed offset without Dark Matter.
-    *   *Verdict:* Matches Bullet Cluster observations.
+    *   Non-minimal photon coupling $\lambda_\gamma \nabla \phi \cdot F^2$ reproduces the lensing signal.
+    *   *Prediction:* A ~37% deficit in Shapiro time delays is predicted, serving as a falsifiable test.
 
 ---
 

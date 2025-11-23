@@ -3,7 +3,7 @@ import { LayoutDashboard, Atom, Orbit, Disc } from 'lucide-react';
 
 const Sidebar = () => {
     const navItems = [
-        { path: '/', icon: LayoutDashboard, label: 'Station' },
+        { path: '/station', icon: LayoutDashboard, label: 'Station' },
         { path: '/cosmology', icon: Atom, label: 'Cosmology' },
         { path: '/galaxy', icon: Orbit, label: 'Galaxy Rotation' },
         { path: '/black-hole', icon: Disc, label: 'Black Hole' },

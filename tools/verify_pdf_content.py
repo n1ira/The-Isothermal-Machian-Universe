@@ -62,7 +62,8 @@ def main():
         "QCD Trigger",
         "Coincidence",
         "DHOST",
-        "falsification test"
+        "falsification test",
+        "Bohm quantum potential"
     ]
 
     # Paper 6: CMB

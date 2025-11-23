@@ -63,7 +63,8 @@ def main():
         "Coincidence",
         "DHOST",
         "falsification test",
-        "Bohm quantum potential"
+        "Bohm quantum potential",
+        "DHOST Class I"
     ]
 
     # Paper 6: CMB

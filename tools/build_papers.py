@@ -29,6 +29,12 @@ def generate_figures():
         # Run from project root
         result = subprocess.run([sys.executable, "lab/generate_figures.py"], check=True, capture_output=True, text=True)
         print(result.stdout)
+        
+        # Run the bounce figure generator for Paper 8
+        print("Generating bounce experiment figures...")
+        result_bounce = subprocess.run([sys.executable, "lab/generate_bounce_figure.py"], check=True, capture_output=True, text=True)
+        print(result_bounce.stdout)
+        
     except subprocess.CalledProcessError as e:
         print("Error generating figures:")
         print(e.stderr)

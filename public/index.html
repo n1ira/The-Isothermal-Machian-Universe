@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Isothermal Machian Universe</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;400;700&family=Space+Mono:ital@0;1&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #050505;
+            --text-color: #e0e0e0;
+            --accent-cyan: #00f3ff;
+            --accent-pink: #ff0055;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --font-main: 'Outfit', sans-serif;
+            --font-mono: 'Space Mono', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: var(--font-main);
+            overflow-x: hidden;
+            cursor: none;
+            /* Custom cursor */
+        }
+
+        /* Custom Cursor */
+        #cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border: 1px solid var(--accent-cyan);
+            border-radius: 50%;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            transition: width 0.2s, height 0.2s, background-color 0.2s;
+            z-index: 9999;
+            mix-blend-mode: difference;
+        }
+
+        #cursor.hovered {
+            width: 50px;
+            height: 50px;
+            background-color: rgba(0, 243, 255, 0.1);
+            border-color: var(--accent-pink);
+        }
+
+        /* Background Canvas */
+        #starfield {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: radial-gradient(circle at center, #0a0a12 0%, #000000 100%);
+        }
+
+        /* Typography & Layout */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            perspective: 1000px;
+        }
+
+        h1 {
+            font-size: 6rem;
+            font-weight: 700;
+            margin: 0;
+            line-height: 1;
+            background: linear-gradient(135deg, #fff 0%, #888 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            opacity: 0;
+            animation: fadeUp 1s ease-out forwards 0.5s;
+            letter-spacing: -2px;
+        }
+
+        .subtitle {
+            font-family: var(--font-mono);
+            font-size: 1.5rem;
+            color: var(--accent-cyan);
+            margin-top: 1rem;
+            opacity: 0;
+            animation: fadeUp 1s ease-out forwards 0.8s;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            font-size: 0.8rem;
+            opacity: 0.5;
+            animation: bounce 2s infinite;
+        }
+
+        /* Cards Section */
+        .pillars {
+            padding: 10rem 0;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+        }
+
+        .card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 3rem;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+            transform: translateX(-100%);
+            transition: 0.5s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: var(--accent-cyan);
+            box-shadow: 0 20px 40px rgba(0, 243, 255, 0.1);
+        }
+
+        .card:hover::before {
+            transform: translateX(100%);
+        }
+
+        .card h2 {
+            font-size: 2.5rem;
+            margin-top: 0;
+            color: #fff;
+        }
+
+        .card h3 {
+            font-family: var(--font-mono);
+            color: var(--accent-cyan);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1.5rem;
+        }
+
+        .card p {
+            font-size: 1.1rem;
+            color: #aaa;
+            line-height: 1.8;
+        }
+
+        .card img {
+            width: 100%;
+            border-radius: 12px;
+            margin-top: 2rem;
+            filter: grayscale(100%);
+            transition: filter 0.3s;
+        }
+
+        .card:hover img {
+            filter: grayscale(0%);
+        }
+
+        /* Interactive Quote */
+        .quote-box {
+            text-align: center;
+            padding: 8rem 0;
+            font-size: 3rem;
+            font-weight: 200;
+            color: #fff;
+        }
+
+        .highlight {
+            color: var(--accent-pink);
+            font-weight: 700;
+            position: relative;
+            display: inline-block;
+        }
+
+        .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--accent-pink);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.5s;
+        }
+
+        .highlight:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        /* Launch Button */
+        .launch-wrapper {
+            text-align: center;
+            padding-bottom: 8rem;
+        }
+
+        .btn-launch {
+            display: inline-block;
+            padding: 1.5rem 4rem;
+            background: transparent;
+            color: #fff;
+            font-family: var(--font-mono);
+            font-size: 1.2rem;
+            text-decoration: none;
+            border: 1px solid var(--accent-cyan);
+            border-radius: 50px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s;
+            z-index: 1;
+        }
+
+        .btn-launch::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 100%;
+            background: var(--accent-cyan);
+            z-index: -1;
+            transition: width 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        .btn-launch:hover {
+            color: #000;
+            box-shadow: 0 0 30px var(--accent-cyan);
+        }
+
+        .btn-launch:hover::before {
+            width: 100%;
+        }
+
+        /* Animations */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(10px);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="cursor"></div>
+    <canvas id="starfield"></canvas>
+
+    <div class="container">
+        <header>
+            <h1>THE ISOTHERMAL<br>MACHIAN UNIVERSE</h1>
+            <div class="subtitle">SPACE IS STATIC. MASS EVOLVES.</div>
+            <div class="scroll-indicator">SCROLL TO EXPLORE</div>
+        </header>
+
+        <div class="quote-box">
+            "The universe is not expanding.<br>
+            It is <span class="highlight">freezing into existence</span>."
+        </div>
+
+        <div class="pillars">
+            <div class="grid">
+                <div class="card hover-trigger">
+                    <h3>Pillar I: Cosmology</h3>
+                    <h2>The Age Crisis</h2>
+                    <p>High-redshift galaxies shouldn't exist. In our model, the past was "lighter" and clocks ticked
+                        faster. We solve the impossible early universe.</p>
+                    <img src="assets/fig2_age_redshift.png" alt="Age vs Redshift">
+                </div>
+
+                <div class="card hover-trigger">
+                    <h3>Pillar II: Astrophysics</h3>
+                    <h2>Galaxy Rotation</h2>
+                    <p>Dark Matter is a ghost. Flat rotation curves are the natural result of a radial mass gradient.
+                        The outskirts are simply "older" than the core.</p>
+                    <img src="assets/fig1_rotation_curve.png" alt="Galaxy Rotation">
+                </div>
+
+                <div class="card hover-trigger">
+                    <h3>Pillar III: Quantum Gravity</h3>
+                    <h2>The Solid State</h2>
+                    <p>Black Holes are not holes. They are regions of maximum computational density. The Event Horizon
+                        is a phase transition to Solid Time.</p>
+                    <img src="assets/fig3_black_hole_infall.png" alt="Black Hole">
+                </div>
+            </div>
+        </div>
+
+        <div class="launch-wrapper">
+            <a href="http://localhost:8501" class="btn-launch hover-trigger">INITIATE RESEARCH STATION</a>
+        </div>
+    </div>
+
+    <script>
+        // Custom Cursor Logic
+        const cursor = document.getElementById('cursor');
+        const hoverTriggers = document.querySelectorAll('.hover-trigger');
+
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        hoverTriggers.forEach(trigger => {
+            trigger.addEventListener('mouseenter', () => cursor.classList.add('hovered'));
+            trigger.addEventListener('mouseleave', () => cursor.classList.remove('hovered'));
+        });
+
+        // Starfield Logic
+        const canvas = document.getElementById('starfield');
+        const ctx = canvas.getContext('2d');
+        let width, height;
+        let stars = [];
+
+        function resize() {
+            width = window.innerWidth;
+            height = window.innerHeight;
+            canvas.width = width;
+            canvas.height = height;
+            initStars();
+        }
+
+        class Star {
+            constructor() {
+                this.reset();
+            }
+
+            reset() {
+                this.x = Math.random() * width;
+                this.y = Math.random() * height;
+                this.z = Math.random() * 2 + 0.5; // Depth/Speed
+                this.size = Math.random() * 1.5;
+                this.opacity = Math.random();
+                this.fadeDir = Math.random() > 0.5 ? 0.01 : -0.01;
+            }
+
+            update(mouseX, mouseY) {
+                // Parallax effect based on mouse
+                const dx = (mouseX - width / 2) * 0.05 * this.z;
+                const dy = (mouseY - height / 2) * 0.05 * this.z;
+
+                // Twinkle
+                this.opacity += this.fadeDir;
+                if (this.opacity > 1 || this.opacity < 0.2) this.fadeDir = -this.fadeDir;
+
+                // Draw
+                ctx.beginPath();
+                ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
+                ctx.arc(this.x - dx, this.y - dy, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function initStars() {
+            stars = [];
+            for (let i = 0; i < 200; i++) {
+                stars.push(new Star());
+            }
+        }
+
+        let mouseX = 0, mouseY = 0;
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        function animate() {
+            ctx.clearRect(0, 0, width, height);
+            stars.forEach(star => star.update(mouseX, mouseY));
+            requestAnimationFrame(animate);
+        }
+
+        window.addEventListener('resize', resize);
+        resize();
+        animate();
+
+    </script>
+</body>
+
+</html>

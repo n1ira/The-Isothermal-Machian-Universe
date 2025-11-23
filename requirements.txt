@@ -1,0 +1,9 @@
+streamlit
+numpy
+scipy
+pandas
+plotly
+pypdf
+# cupy-cuda12x # Uncomment for GPU acceleration
+# torch # Uncomment for advanced ML
+matplotlib

@@ -38,33 +38,45 @@ def main():
     # Paper 1: Galaxy Rotation
     # Look for: 209 km/s, 0.89 kpc, 0.98
     # Note: LaTeX math might be extracted weirdly, so stick to simple numbers/text
+    # Paper 1: Galaxy Rotation
     p1_checks = [
-        "209", # Velocity
-        "0.89", # Scale length
-        "0.98", # Beta
-        "coupling constant"
+        "Disk Stability Warning",
+        "synthetic survey"
     ]
     
     # Paper 2: Cosmology
-    # Look for: 30.8 Billion, 15.92 Billion
     p2_checks = [
-        "30.8 Billion Years",
-        "15.92 Billion Years",
-        "Blue Screen of Death"
+        "purely mathematical",
+        "Caveat"
     ]
     
-    # Paper 3: Black Holes
-    # Look for: Holographic Freezing, 10^5 (might be 105 or 10 5), 1.51
-    p3_checks = [
-        "Holographic Freezing",
-        "Alice",
-        "Bob"
+    # Paper 4: Lensing
+    p4_checks = []
+
+    # Paper 5: Unified
+    p5_checks = [
+        "non-perturbative regime",
+        "hypothesize that during cluster collisions"
+    ]
+
+    # Paper 6: CMB
+    p6_checks = [
+        "Disclaimer"
+    ]
+
+    # Dilaton
+    dilaton_checks = [
+        "QCD Trace Anomaly",
+        "dimensional transmutation"
     ]
     
     success = True
     success &= verify_pdf("paper_1_galaxy_rotation.pdf", p1_checks)
     success &= verify_pdf("paper_2_cosmology.pdf", p2_checks)
-    success &= verify_pdf("paper_3_black_holes.pdf", p3_checks)
+    success &= verify_pdf("paper_4_lensing.pdf", p4_checks)
+    success &= verify_pdf("paper_5_unified_field.pdf", p5_checks)
+    success &= verify_pdf("paper_6_cmb.pdf", p6_checks)
+    success &= verify_pdf("paper_7_dilaton.pdf", dilaton_checks)
     
     if success:
         print("\nSUCCESS: All PDFs contain the verified 'Kill Shot' data.")

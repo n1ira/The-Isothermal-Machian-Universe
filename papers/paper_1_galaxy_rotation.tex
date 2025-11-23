@@ -24,7 +24,9 @@ gradient:
 \begin{equation}
     \vec{F} = -m \vec{\nabla} \Phi_N - \frac{m}{\phi} \vec{\nabla} \phi
 \end{equation}
-The second term is the "Fifth Force" which mimics Dark Matter. To satisfy Solar System constraints
+The second term is the "Fifth Force" which mimics Dark Matter. In the fundamental Universal Conformal Coupling framework (Paper 5), this arises because the physical metric scales as $\tilde{g}_{\mu\nu} = A^2(\phi) g_{\mu\nu}$. In the galactic rest frame, this manifests effectively as a spatial variation of inertial mass $m(r) \propto A(\phi(r))$. While we use the language of "inertial reduction" for intuitive clarity, the effect is rigorously derived from the geodesic motion in the conformal metric.
+
+To satisfy Solar System constraints
 (where no such force is observed), we invoke the \textbf{Chameleon Mechanism}. We choose a potential
 $V(\phi) \sim \phi^{-n}$. The effective potential for the scalar field becomes density-dependent:
 \begin{equation}
@@ -53,7 +55,7 @@ A critical test is gravitational lensing. In General Relativity, photons follow 
 \begin{equation}
     \theta = \frac{4GM}{c^2 b} \left( \frac{1+\gamma}{2} \right)
 \end{equation}
-Reducing the inertial mass in the outer disk makes stars easier to accelerate. This could potentially lead to dynamical instabilities, such as the rapid formation of bars or warps. Detailed N-body simulations are required to verify that stable disk structures can persist over cosmological timescales in a Machian potential.
+\textbf{Disk Stability Warning:} Reducing the effective inertia in the outer disk makes stars more susceptible to acceleration. This could potentially lead to dynamical instabilities, such as the rapid formation of bars or warps, which are not seen in all disk galaxies. While our preliminary N-body tests show stability over short timescales, detailed high-resolution simulations are required to verify that stable disk structures can persist over cosmological timescales in this Machian potential. This remains a critical open question for the model.
 
 \subsection{Spectroscopic Consistency}
 A common objection to theories with varying inertial mass $m(r)$ inside galaxies is that it would shift atomic spectral lines, contaminating the Doppler measurements used to construct rotation curves.
@@ -73,7 +75,7 @@ In contrast, the Doppler shift measured is first-order in $v/c$:
 Thus, the "spurious" spectral shift induced by the mass gradient is three orders of magnitude smaller ($\mathcal{O}(10^{-6})$) than the kinematic Doppler shift ($\mathcal{O}(10^{-3})$). While this suggests a potential precision test for future high-resolution spectroscopy, it confirms that current rotation curve data remains valid within the Machian framework.
 
 \subsection{Preliminary SPARC Survey Simulation}
-To validate the universality of the Machian parameters, we performed a synthetic survey of 20 galaxies with properties derived from the Tully-Fisher relation ($M_b \in [10^8, 10^{11}] M_\odot$). We fitted the Machian model parameters ($R_\phi, \beta$) to the mock rotation curves generated from standard NFW profiles.
+To validate the universality of the Machian parameters, we performed a \textbf{synthetic} survey of 20 galaxies with properties derived from the Tully-Fisher relation ($M_b \in [10^8, 10^{11}] M_\odot$). We fitted the Machian model parameters ($R_\phi, \beta$) to the mock rotation curves generated from standard NFW profiles. \textit{Note: This is a consistency check against $\Lambda$CDM phenomenology; a full fit to real SPARC data is the subject of future work.}
 
 \begin{figure}[h]
     \centering

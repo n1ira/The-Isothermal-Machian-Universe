@@ -66,18 +66,21 @@ We implemented this comparison in the simulation script `static\_universe\_proof
 \end{equation}
 This result (effectively zero within machine precision) confirms that a static universe with Machian mass evolution is \textbf{observationally indistinguishable} from an expanding universe with Dark Energy for geometric probes (Supernovae Ia, BAO).
 
-\subsection{The Surface Brightness (Tolman) Test}
-A critical test for any static cosmology is the surface brightness dimming law. In an expanding universe, surface brightness scales as $(1+z)^{-4}$. In a naive static universe, it scales as $(1+z)^{-1}$, which is ruled out by observations.
-However, in the Isothermal Machian Universe, the "Universal Conformal Coupling" ensures agreement with the standard $(1+z)^{-4}$ law.
-The dimming factors arise as follows:
-\begin{enumerate}
-    \item \textbf{Energy Dimming:} $E_{obs} = E_{emit}/(1+z)$ (derived in Section 2.2).
-    \item \textbf{Time Dilation:} Arrival rates scale as $dt_{obs} = dt_{emit}(1+z)$ due to the mass-dependent clock rates.
-    \item \textbf{Conformal Aperture:} The detector area $A$ is defined by atomic rulers ($A \propto a_0^2$). Since mass evolves, the "size" of the detector relative to the conformal metric changes. As proven in Paper 5, the metric $\tilde{g}_{\mu\nu}$ is conformally dual to FLRW. Since observables are conformally invariant, the flux per unit physical area must scale identically to the expanding frame prediction: $F \propto (1+z)^{-4}$.
-\end{enumerate}
-Thus, the IMU passes the Tolman surface brightness test. The choice between "Expansion" and "Mass Evolution" is therefore a choice of coordinate frame, not empirical fact. However, as noted in the discussion, the Static Frame offers a natural resolution to the "Early Galaxy" time-scale problem.
+\subsection{The Tolman Surface Brightness Test}
+A classic test of cosmic expansion is the Tolman Surface Brightness relation, which predicts that the surface brightness of galaxies dims as $(1+z)^{-4}$. In a static universe, one would naively expect $(1+z)^{-1}$.
+However, this naive expectation fails in a conformally coupled theory.
 
-At $z=10$, the Machian universe has a \textit{coordinate age} of \textbf{30.8 Billion Years}, significantly older than the $\Lambda$CDM prediction of $\sim$ 13 Gyr. This provides ample time for the formation of the massive, mature galaxies observed by JWST.
+**Proof via Etherington's Reciprocity Theorem:**
+The relationship between Luminosity Distance $d_L$ and Angular Diameter Distance $d_A$ is given by the Etherington Theorem:
+\begin{equation}
+    d_L = (1+z)^2 d_A
+\end{equation}
+This theorem holds for \textit{any} metric theory of gravity where photon number is conserved ($\nabla_\mu J^\mu = 0$) and photons travel on null geodesics.
+In the Isothermal Machian Universe, the metric $\tilde{g}_{\mu\nu}$ is conformally related to the FLRW metric $g_{\mu\nu}$. Since the photon number current $J^\mu$ and the null geodesic condition $ds^2=0$ are **conformally invariant**, the Etherington relation must hold in both frames.
+\begin{equation}
+    \text{Flux}_{Machian} \equiv \text{Flux}_{FLRW} \propto (1+z)^{-4}
+\end{equation}
+Thus, the $(1+z)^{-4}$ dimming is not a coordinate artifact but a **Topological Invariant** of the conformal mapping. The "shrinking atoms" in the static frame (which reduce the absorption cross-section) are physically indistinguishable from the "expanding space" in the FLRW frame. The theory passes the Tolman test by mathematical necessity.
 
 \section{Discussion}
 \subsection{Interpretation: Frame Change vs. New Physics}

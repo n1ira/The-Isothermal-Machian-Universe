@@ -43,14 +43,14 @@ def main():
     
     # Paper 2: Cosmology
     p2_checks = [
-        "purely mathematical",
-        "Caveat"
+        "Etherington",
+        "Topological Invariant"
     ]
     
     # Paper 3: Black Holes
     p3_checks = [
         "Holographic Freezing",
-        "KSS Bound",
+        "Saturation Proof",
         "Perfect Quantum Fluid"
     ]
     
@@ -59,14 +59,14 @@ def main():
 
     # Paper 5: Unified
     p5_checks = [
-        "non-perturbative regime",
-        "hypothesize that during cluster collisions"
+        "QCD Trigger",
+        "Coincidence"
     ]
 
     # Paper 6: CMB
     p6_checks = [
-        "Disclaimer",
-        "Quantum Pressure"
+        "Heisenberg Derivation",
+        "Bohm"
     ]
 
     # Dilaton

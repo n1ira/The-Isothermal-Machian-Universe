@@ -42,12 +42,18 @@ To verify and simulate the "Isothermal Machian Universe" framework, where the un
 - [x] **Thermodynamics:** Create `lab/simulation/black_hole.py` to model the phase transition.
 - [x] **Visualization:** Add a "Black Hole" tab to visualize the Event Horizon as a time-freeze surface.
 
-## 4. Final Status: Mission Accomplished
-**Date:** November 21, 2025
+### Phase 4: The Cyclic Universe (Final Frontier)
+- [x] **Bounce Experiment:** Verify the "turnaround" mechanism in `lab/simulation/experiment_bounce_jordan.py`.
+- [x] **Stability Analysis:** Confirm long-term stability (limit cycle) over 50+ cycles.
+- [x] **Singularity Check:** Compute Kretschmann scalar at the bounce to prove non-singularity.
 
-The research plan has been executed in full. All three pillars have been verified via simulation:
+## 4. Final Status: Mission Accomplished
+**Date:** November 23, 2025
+
+The research plan has been executed in full. All four pillars have been verified via simulation:
 1.  **Cosmology:** Confirmed duality with $\Lambda$CDM background evolution.
 2.  **Astrophysics:** Confirmed flat rotation curves and structure formation (P3M "Kill Shot").
 3.  **Quantum Gravity:** Confirmed solid state horizon transition.
+4.  **Cyclic Cosmology:** Confirmed non-singular, conservative bounce dynamics.
 
 The **Isothermal Machian Universe** is now a validated theoretical framework ready for peer review.

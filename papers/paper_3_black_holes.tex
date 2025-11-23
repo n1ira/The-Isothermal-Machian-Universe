@@ -7,7 +7,7 @@
 
 \title{Time as Computation: \\ Black Holes as Solid Information Boundaries}
 \author{Andreas Houg \\ \small (Research aided by Gemini 3)}
-\date{November 18, 2025}
+\date{November 23, 2025}
 
 \begin{document}
 
@@ -18,36 +18,29 @@ We propose a resolution to the Black Hole Information Paradox by modeling the Ev
 \end{abstract}
 
 \section{Introduction}
-The conflict between General Relativity (smooth horizon) and Quantum Mechanics (unitary information preservation) suggests a breakdown in our understanding of spacetime at the horizon. We propose that spacetime itself undergoes a phase transition.
+The conflict between General Relativity (smooth horizon) and Quantum Mechanics (unitary information preservation) suggests a breakdown in our understanding of spacetime at the horizon. We propose that this breakdown is captured by the effective field theory (EFT) of the Machian scalar field.
 
-\section{Scalar Vacuum Phase Transition}
+\section{EFT Breakdown at the Horizon}
 \subsection{The Scalar Horizon}
-In our Scalar-Tensor framework, the black hole is not merely a vacuum solution of $R_{\mu\nu}=0$ but a soliton-like object where the scalar field $\phi(r)$ develops a non-trivial profile. Solving the field equations in the Schwarzschild background, we find that the scalar field diverges or vanishes as it approaches the horizon $R_s$.
-We identify the "Temporal Fluidity" order parameter $\mathcal{F}$ with the effective refractive index of the vacuum induced by the scalar field gradient:
-\begin{equation}
-    \mathcal{F}(r) \equiv \frac{1}{n(r)} = \sqrt{g_{00}(\phi)}
-\end{equation}
-Near the horizon, the back-reaction of the scalar field on the metric modifies the geometry. If we assume a critical point behavior $\phi(r) \sim (r-R_s)^\delta$, the effective metric component $g_{00}$ behaves as:
-\begin{equation}
-    g_{00} \approx \left( 1 - \frac{R_s}{r} \right)^{1+\epsilon}
-\end{equation}
-where $\epsilon$ depends on the scalar coupling.
+In our Scalar-Tensor framework, the black hole is not merely a vacuum solution but a soliton-like object where the conformal factor $A(\phi)$ diverges.
+Near the horizon $R_s$, the effective Planck length $L_p(\phi) \sim M_{pl}^{-1} A(\phi)$ grows. When $L_p(\phi) \sim R_s$, the system becomes strongly coupled, and the derivative expansion of the EFT breaks down.
 
-\subsection{The Solid State Transition}
-We propose that at $r=R_s$, the vacuum undergoes a quantum phase transition. The scalar field $\phi$ acquires a vacuum expectation value (VEV) that breaks local Lorentz invariance, effectively "freezing" the temporal dimension.
-This is analogous to a superconductor transition where the magnetic field is expelled (Meissner effect). Here, the "magnetic field" is the flow of time (the timelike Killing vector), which is expelled from the interior.
-The horizon becomes a "Solid" surface—a domain wall where the degrees of freedom are topological. This provides a microscopic basis for the \textbf{Membrane Paradigm}, where the horizon is treated as a physical conductor with surface resistivity $\sim 377 \Omega$. In our model, this resistivity arises from the scattering of infalling modes off the "stiff" scalar field condensate at the boundary.
+\subsection{The Fuzzball Limit}
+We interpret this breakdown not as a singularity, but as a phase transition to a non-geometric phase, similar to the **Fuzzball** proposal in String Theory.
+\begin{itemize}
+    \item **Exterior (EFT valid):** The metric is approximately Schwarzschild.
+    \item **Horizon (Phase Transition):** The conformal factor diverges, signaling the end of the classical manifold. The degrees of freedom transition from geometric metric modes to internal scalar excitations.
+\end{itemize}
+This effectively "caps" the spacetime, resolving the Information Paradox by replacing the vacuum interior with a "solid" state of stringy/scalar degrees of freedom that store information holographically.
 
 \section{Resolution of the Information Paradox}
-The Black Hole Information Paradox arises from the conflict between the Equivalence Principle (smooth horizon) and Unitarity (information preservation). The AMPS firewall argument suggests that to preserve unitarity, the horizon must be a high-energy barrier.
-
-\subsection{The "Cold" Firewall}
-Our model confirms the existence of a boundary (the phase transition) but resolves the violent nature of the firewall.
+The Black Hole Information Paradox arises from the conflict between the Equivalence Principle (smooth horizon) and Unitarity (information preservation).
+Our model supports the principle of **Complementarity**:
 \begin{itemize}
-    \item \textbf{Alice's Perspective:} As she falls in, she experiences the phase transition locally. Similar to a superfluid transition, this may be smooth or second-order, allowing her to cross without immediate destruction (preserving a form of the Equivalence Principle).
-    \item \textbf{Bob's Perspective:} The horizon is a hard surface where information accumulates. The "Page Curve" is satisfied because the information is never lost to a disconnected interior; it is plastered onto the "Solid" surface, accessible to any future observer who waits long enough (or falls in).
+    \item \textbf{Infalling Observer (Alice):} Crosses the horizon in finite proper time. For her, the local effective physics remains valid until she hits the deep interior (Planck density).
+    \item \textbf{External Observer (Bob):} Sees the horizon as a "stiff" membrane where time dilation diverges. The information is thermally encoded on this surface.
 \end{itemize}
-Thus, the "Solid State" horizon acts as a "Cold Firewall"---a rigid boundary for external observers that preserves unitarity without incinerating infalling observers.
+The "Solid State" description is thus the dual thermodynamic description of the horizon as seen from infinity.
 
 \section{Simulation}
 We simulated the trajectory of an infalling observer ("Alice") using our `black\_hole.py` engine. We also calculated the Bekenstein-Hawking entropy for the horizon surface. For a $10 M_{\odot}$ black hole, the simulation yields a horizon entropy of approximately $1.51 \times 10^{79}$ bits.
@@ -75,7 +68,7 @@ The "Solid State" hypothesis presented here should be understood as a heuristic 
 While this picture provides an intuitive resolution to the Information Paradox by placing information on a rigid boundary, a rigorous derivation requires a microscopic theory of the horizon states—likely involving a specific realization of the Holographic Principle or a discrete spacetime formulation.
 
 \section{Theoretical Interpretation vs. Microscopic Derivation}
-It is important to distinguish between the macroscopic description presented here and a full quantum gravity derivation. The "Solid State" horizon is an effective field theory description arising from the divergence of the scalar field's refractive index $n(r)$.
+It is important to distinguish between the macroscopic description presented here and a full quantum gravity derivation. The "Solid State" horizon is an effective field theory description arising from the divergence of the conformal factor $A(\phi)$.
 While this picture provides a compelling resolution to the Information Paradox via holographic storage on the "frozen" surface, it does not yet derive the Bekenstein-Hawking entropy from counting microstates of the scalar field. We propose that the scalar field modes at the critical point $\phi_c$ provide the necessary degrees of freedom, but a rigorous calculation requires a UV-complete theory of the scalar-matter coupling.
 Thus, this model should be viewed as a "hydrodynamic" limit of the underlying quantum geometry.
 

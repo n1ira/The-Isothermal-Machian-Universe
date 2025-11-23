@@ -44,12 +44,15 @@ def compile_paper(paper_path):
     try:
         # Run pdflatex inside the papers directory
         # -interaction=nonstopmode prevents hanging on errors
-        subprocess.run(
-            ["pdflatex", "-interaction=nonstopmode", paper_file], 
-            cwd=paper_dir, 
-            check=True, 
-            capture_output=True
-        )
+        # Run twice to resolve references
+        for i in range(2):
+            print(f"  Pass {i+1}...")
+            subprocess.run(
+                ["pdflatex", "-interaction=nonstopmode", paper_file], 
+                cwd=paper_dir, 
+                check=True, 
+                capture_output=True
+            )
         print(f"Successfully compiled {paper_file}")
     except subprocess.CalledProcessError:
         print(f"Failed to compile {paper_file}. Check log file for details.")

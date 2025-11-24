@@ -23,11 +23,15 @@ def load_sparc_data_pandas(filepath):
 def generate_rotation_curve():
     print("Generating Figure 1: Galaxy Rotation Curve...")
     
-    # Parameters (The "Kill Shot")
-    m0 = 2.76e9 # Fitted M0 for NGC 6503
-    scale_length = 0.89 # Fitted R
-    beta = 0.98 # Fitted Beta
-    coupling = 1.0e-6 # Tuning parameter
+    # Optimized Parameters for NGC 6503 (Chi2 ~ 40.6)
+    # Note: m0 is implicitly part of the baryon data for the fit, 
+    # but for the analytic smooth line we still use a point mass approx + profile guess?
+    # Actually, let's just use the fit parameters for the Machian part.
+    
+    scale_length = 3.625 # Fitted R
+    beta = 1.5412        # Fitted Beta
+    coupling = 1.2534e-07 # Fitted Coupling
+    m0_approx = 4.0e9    # Approx Baryonic Mass for analytic line (tuned for visual match if needed)
     
     c_val = 299792.458 # km/s
     phi_0 = c_val**2
@@ -38,36 +42,26 @@ def generate_rotation_curve():
     if os.path.exists(data_path):
         df = load_sparc_data_pandas(data_path)
     
-    r_model = np.linspace(0.1, 20, 100)
+    r_model = np.linspace(0.1, 25, 100)
     
     # Define Physics
-    def calculate_machian_velocity(r_val, v_baryon_at_r=None):
-        # If we have explicit baryon velocity (from data), use it for the "Newtonian" part?
-        # But we are generating a smooth model curve.
-        # Let's stick to the analytic model for the curve, OR interpolate the baryon data?
-        # To show the FIT, we usually use the Baryons + Boost.
-        # For the smooth model line, we need a smooth Baryon profile.
-        # But since SPARC provides data points, let's plot the Model evaluated AT the data points, 
-        # or interpolated.
+    def calculate_machian_velocity_analytic(r_val):
+        # Analytic Machian Acceleration (Fifth Force approximation)
+        # a_mach = (c^2 * coup * beta) / (2 * R * (1 + r/R))
         
-        # Simplified Analytic Model for the smooth blue line (assuming exponential disk approx)
-        # This is for visualization of the THEORY.
+        a_machian = (c_val**2 * coupling * beta) / (2 * scale_length * (1 + r_val / scale_length))
         
-        term1 = (1 + r_val / scale_length)
-        phi = phi_0 * term1**beta
-        dphi_dr = phi_0 * beta * term1**(beta - 1) / scale_length
+        # Analytic Newtonian (Approximate Baryonic Potential)
+        # Use a simple Pseudo-Isothermal or Exponential Disk profile for the smooth line
+        # v_baryon^2 approx V_max^2 * (1 - exp(-r/R_disk))?
+        # NGC 6503 V_baryon peaks around 95 km/s at 5kpc.
+        v_baryon_analytic_sq = (95.0**2) * (r_val / (r_val + 1.5)) # Simple rise
         
-        a_machian = (c_val**2 / (2 * phi)) * dphi_dr * coupling
-        
-        # Analytic Newtonian (Point Mass approx for visualization if data not avail)
-        G_const = 4.30091e-6 
-        a_newt_analytic = G_const * m0 / r_val**2
-        
-        v_sq = r_val * (a_newt_analytic + a_machian)
+        v_sq = v_baryon_analytic_sq + r_val * a_machian
         return np.sqrt(v_sq)
 
     # Calculate Model Curve (Smooth)
-    v_machian_smooth = [calculate_machian_velocity(ri) for ri in r_model]
+    v_machian_smooth = [calculate_machian_velocity_analytic(ri) for ri in r_model]
     
     plt.figure(figsize=(10, 6))
     plt.style.use('default') # Ensure white background
@@ -91,14 +85,9 @@ def generate_rotation_curve():
         # Plot Observed Data
         plt.errorbar(radii, v_obs, yerr=v_err, fmt='o', color='black', label='Observed (SPARC)', markersize=4)
         
-        # Calculate Machian Boost for these exact radii to check fit? 
-        # No, we plot the smooth theoretical curve derived above.
-        # But the smooth curve used Point Mass approx! 
-        # Ideally, we should plot the "Machian Prediction" using the ACTUAL Baryon distribution.
-        # V_machian^2 = V_baryon^2 + r * a_machian
-        
-        a_mach_data = [(c_val**2 / (2 * (phi_0 * (1 + ri/scale_length)**beta))) * (phi_0 * beta * (1 + ri/scale_length)**(beta - 1) / scale_length) * coupling for ri in radii]
-        v_mach_total_data = np.sqrt(v_baryon_sq + np.array(a_mach_data) * radii)
+        # Calculate Machian Fit using REAL Baryons + Optimized Boost
+        a_mach_data = (c_val**2 * coupling * beta) / (2 * scale_length * (1 + radii / scale_length))
+        v_mach_total_data = np.sqrt(v_baryon_sq + radii * a_mach_data)
         
         # Plot the Machian Fit based on REAL Baryons (connected line)
         plt.plot(radii, v_mach_total_data, label=f'Machian Fit', color='blue', linewidth=2)

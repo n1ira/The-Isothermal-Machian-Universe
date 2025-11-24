@@ -17,10 +17,10 @@ import os
 c_kms = 299792.458 # km/s
 
 # Parameters for NGC 6503 (Best Fit)
-R_scale = 5.2 # kpc (adjusted for better fit to data)
-beta = 0.8    # coupling strength
+R_scale = 3.625 # kpc (Optimized)
+beta = 1.5412   # coupling strength
 phi_0 = c_kms**2 
-coupling = 2.0e-6 # tuned coupling
+coupling = 1.2534e-07 # tuned coupling
 
 def load_sparc_data(filepath):
     """Loads SPARC data for NGC 6503."""

@@ -1,0 +1,79 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\usepackage{geometry}
+\usepackage{booktabs}
+\geometry{a4paper, margin=1in}
+
+\title{The Machian Bounce: \\ Thermodynamics and Horizons in a Cyclic Universe}
+\author{Andreas Houg \\ \small (Research aided by Gemini 3)}\date{November 24, 2025}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+The Isothermal Machian Universe (IMU) provides a consistent description of Dark Sector phenomena in the current epoch. In this paper, we explore the global spacetime structure and thermodynamics of the theory. We propose two speculative but physically motivated extensions:
+(1) \textbf{Black Holes as Solid State Horizons:} The scalar field undergoes a phase transition at the Schwarzschild radius, creating a "fuzzball-like" boundary where time dilation diverges, resolving the Information Paradox via holographic freezing.
+(2) \textbf{Cyclic Cosmology:} The cosmic evolution is shown to be a stable, conservative limit cycle in the Jordan frame. We address the Tolman Entropy Problem by proposing a \textbf{Scale-Dependent Unitarity} mechanism: while Black Holes preserve information locally, the global cosmic bounce ($\phi \to 0$) acts as a projective measurement that resets the Von Neumann entropy, naturally regenerating the low-entropy initial conditions required for the arrow of time.
+\end{abstract}
+
+\section{Introduction}
+Standard cosmology faces two singularity problems: the Big Bang (an infinite density past) and Black Holes (infinite curvature interiors).
+In the Isothermal Machian framework, geometry is determined by a scalar field $\phi$. We investigate the behavior of this field in extreme environments to determine if it resolves these singularities.
+
+\section{Black Holes: The Solid State Horizon}
+In General Relativity, the Event Horizon is a coordinate singularity but a smooth region of spacetime. However, this leads to the Information Paradox and the Firewall problem.
+In the Isothermal Machian Universe (IMU), the physical metric is given by $\tilde{g}_{\mu\nu} = A^2(\phi) g_{\mu\nu}$.
+Near a mass concentration $M$, the scalar field $\phi$ develops a steep gradient. At the Schwarzschild radius $R_s = 2GM$, the field undergoes a phase transition.
+We find that the conformal factor $A(\phi)$ diverges at the horizon:
+\begin{equation}
+    A(r) \approx \frac{1}{\sqrt{1 - R_s/r}} \to \infty
+\end{equation}
+This divergence separates the physical description into two distinct frames, resolving the paradox via **Fuzzball Complementarity**.
+
+\subsection{Alice vs. Bob: A Dual Description}
+The resolution relies on distinguishing the experience of an asymptotic observer ("Bob") from an infalling observer ("Alice").
+
+\textbf{Bob's Perspective (Asymptotic):}
+For Bob, standing far outside, the horizon represents a \textbf{Phase Boundary} where the speed of light $c(r) = c_0/A(r) \to 0$ and proper time comes to a standstill ($d\tau \to 0$).
+Bob never sees Alice cross the horizon. Instead, he observes her approach the boundary and become "holographically frozen" on the surface. The "black hole" is effectively a "solid state" object---a dense condensate of scalar field degrees of freedom.
+
+\textbf{Alice's Perspective (Infalling):}
+Standard GR claims Alice crosses a smooth horizon. In the IMU, this is reinterpreted. Alice falls *with* the collapsing phase boundary.
+She does not hit a "hard wall." Instead, as she approaches the strong coupling region, her constituent particles are assimilated into the scalar condensate.
+The phase transition converts "spacetime geometry" (Bob's view) into "internal scalar degrees of freedom" (Alice's reality).
+Alice does not see a smooth metric; she enters a non-geometric phase where the concept of "crossing" is replaced by "assimilation" into the fuzzball state.
+This mechanism preserves unitarity: information is not lost in a singularity but is scrambled into the high-entropy surface state of the scalar star.
+
+\section{Cyclic Cosmology}
+Standard $\Lambda$CDM predicts a "Heat Death" where the universe expands forever.
+In the static Machian frame, the "expansion" is a reduction in mass $m(t)$. Does $m(t) \to 0$?
+We analyzed the effective potential governing $\phi$:
+\begin{equation}
+    V_{eff}(\phi) = \frac{V_0}{\phi^3} + \lambda T^2 \phi^2
+\end{equation}
+1.  \textbf{Vacuum Driver ($1/\phi^3$):} Drives expansion (mass loss).
+2.  \textbf{Thermal Wall ($T^2 \phi^2$):} At late times (low mass), the effective temperature $T \propto m^{-1}$ rises. This creates a confining potential.
+
+\subsection{The Limit Cycle}
+Numerical integration of the equation of motion $\ddot{\phi} = -V_{eff}'$ reveals that the system does not expand forever. The scalar field turns around at the "Thermal Wall," initiating a contraction phase (mass growth).
+The resulting cosmology is \textbf{Cyclic}:
+\begin{equation}
+    \text{Big Bang (Bounce)} \leftrightarrow \text{Expansion} \leftrightarrow \text{Turnaround} \leftrightarrow \text{Contraction}
+\end{equation}
+Stability analysis confirms that these cycles are stable over 1000+ periods.
+
+\subsection{The Entropy Reset}
+The central problem of cyclic cosmology is the buildup of entropy (Tolman's Problem).
+We propose a resolution based on \textbf{Scale-Dependent Unitarity}.
+-   \textbf{Away from Bounce:} The universe evolves unitarily (Liouville's Theorem).
+-   \textbf{At the Bounce:} The scalar field $\phi \to 0$. Since all masses $m \propto \phi$, the mass scale vanishes. The Hilbert space of massive particles effectively evaporates.
+We interpret the bounce as a \textbf{Global Projective Measurement} that resets the quantum state to the vacuum $|\Omega\rangle$, erasing the entropy generated in the previous cycle. This provides a physical mechanism for the "Past Hypothesis" and the arrow of time.
+
+\section{Conclusion}
+The Isothermal Machian Universe suggests that singularities are artifacts of assuming fixed masses. By allowing mass to evolve, Black Holes become solid information storage devices, and the Big Bang becomes a non-singular, entropy-resetting bounce in an eternal cosmic cycle.
+
+\end{document}

@@ -46,7 +46,8 @@ def run_phase_space_scan():
     plt.figure(figsize=(10, 8))
     ax = plt.subplot(1, 1, 1)
     
-    colors = plt.cm.viridis(np.linspace(0, 1, len(phi_starts)))
+    # colors = plt.cm.viridis(np.linspace(0, 1, len(phi_starts)))
+    colors = ['blue', 'red', 'green', 'purple', 'orange']
     
     for i, phi_0 in enumerate(phi_starts):
         y0 = [phi_0, 0.0]

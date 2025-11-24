@@ -40,7 +40,7 @@ plt.figure(figsize=(10, 7))
 
 # The Models
 plt.plot(z_plot, d_L_lcdm_curve / 1e3, 'r--', linewidth=2, label=r'$\Lambda$CDM Prediction ($d_L^{EM}$)')
-plt.plot(z_plot, d_L_mach_curve / 1e3, 'c-', linewidth=2, label=r'Machian Prediction ($d_L^{GW}$)')
+plt.plot(z_plot, d_L_mach_curve / 1e3, 'b-', linewidth=2, label=r'Machian Prediction ($d_L^{GW}$)')
 
 # The Mock Data
 plt.errorbar(z_events, d_L_obs / 1e3, yerr=sigma_d / 1e3, fmt='o', color='black', 

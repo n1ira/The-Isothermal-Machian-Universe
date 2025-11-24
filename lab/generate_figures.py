@@ -1,13 +1,24 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from simulation.galaxy_rotation import BaryonicMassGradient
+import pandas as pd
+import os
 from simulation import cosmology
 from simulation.black_hole import BlackHole
-import os
 
 # Ensure output directory exists
 output_dir = "papers/figures"
 os.makedirs(output_dir, exist_ok=True)
+
+def load_sparc_data_pandas(filepath):
+    """Loads SPARC data for NGC 6503 using Pandas."""
+    # Columns: Rad(kpc)  Vobs(km/s)  errV(km/s)  Vgas(km/s)  Vdisk(km/s)  Vbulge(km/s)
+    try:
+        data = pd.read_csv(filepath, sep='\s+', comment='#', 
+                           names=['Rad', 'Vobs', 'errV', 'Vgas', 'Vdisk', 'Vbulge'])
+        return data
+    except Exception as e:
+        print(f"Error loading data: {e}")
+        return None
 
 def generate_rotation_curve():
     print("Generating Figure 1: Galaxy Rotation Curve...")
@@ -18,60 +29,89 @@ def generate_rotation_curve():
     beta = 0.98 # Fitted Beta
     coupling = 1.0e-6 # Tuning parameter
     
-    # Define physics functions locally to ensure consistency with Experiment 1
     c_val = 299792.458 # km/s
     phi_0 = c_val**2
     
-    def calculate_velocity(r_val):
-        # phi = phi_0 * (1 + r/R)^beta
-        # dphi/dr = phi_0 * beta * (1 + r/R)^(beta-1) / R
-        # a = (c^2 / 2phi) * dphi/dr * coupling
+    # Load Real Data First
+    data_path = "data/ngc6503.dat"
+    df = None
+    if os.path.exists(data_path):
+        df = load_sparc_data_pandas(data_path)
+    
+    r_model = np.linspace(0.1, 20, 100)
+    
+    # Define Physics
+    def calculate_machian_velocity(r_val, v_baryon_at_r=None):
+        # If we have explicit baryon velocity (from data), use it for the "Newtonian" part?
+        # But we are generating a smooth model curve.
+        # Let's stick to the analytic model for the curve, OR interpolate the baryon data?
+        # To show the FIT, we usually use the Baryons + Boost.
+        # For the smooth model line, we need a smooth Baryon profile.
+        # But since SPARC provides data points, let's plot the Model evaluated AT the data points, 
+        # or interpolated.
+        
+        # Simplified Analytic Model for the smooth blue line (assuming exponential disk approx)
+        # This is for visualization of the THEORY.
         
         term1 = (1 + r_val / scale_length)
         phi = phi_0 * term1**beta
         dphi_dr = phi_0 * beta * term1**(beta - 1) / scale_length
         
-        # Convert units: R is in kpc. c is in km/s.
-        # We need acceleration in (km/s)^2 / kpc ?
-        # v^2 = r * a
-        # a has units of velocity^2 / length.
-        # c^2 is velocity^2. phi is velocity^2.
-        # dphi/dr is velocity^2 / length.
-        # So a is velocity^2 / length. Correct.
-        
         a_machian = (c_val**2 / (2 * phi)) * dphi_dr * coupling
         
-        # Newtonian part (approximate point mass for visualization)
-        # v_newt^2 = G * M / r
-        # G in (km/s)^2 * kpc / M_sun
+        # Analytic Newtonian (Point Mass approx for visualization if data not avail)
         G_const = 4.30091e-6 
-        a_newt = G_const * m0 / r_val**2
+        a_newt_analytic = G_const * m0 / r_val**2
         
-        v_sq = r_val * (a_newt + a_machian)
+        v_sq = r_val * (a_newt_analytic + a_machian)
         return np.sqrt(v_sq)
 
-    r = np.linspace(0.1, 20, 100)
-    v_machian = [calculate_velocity(ri) for ri in r]
-    
-    # Load Real Data
-    data_path = "data/ngc6503.dat"
-    r_obs, v_obs, v_err = None, None, None
-    if os.path.exists(data_path):
-        from simulation.galaxy_rotation import load_sparc_data
-        r_obs, v_obs, v_err = load_sparc_data(data_path)
+    # Calculate Model Curve (Smooth)
+    v_machian_smooth = [calculate_machian_velocity(ri) for ri in r_model]
     
     plt.figure(figsize=(10, 6))
-    plt.plot(r, v_machian, label=f'Machian Fit (Beta={beta:.2f})', color='cyan', linewidth=2)
+    plt.style.use('default') # Ensure white background
     
-    if r_obs is not None:
-        plt.errorbar(r_obs, v_obs, yerr=v_err, fmt='o', color='white', label='NGC 6503 (SPARC)', markersize=4)
-    
-    plt.title(f"Galaxy Rotation Curve: Theory vs Observation")
+    # 1. Plot Baryonic (Newtonian) Contribution if available
+    if df is not None:
+        radii = df['Rad'].values
+        v_obs = df['Vobs'].values
+        v_err = df['errV'].values
+        v_gas = df['Vgas'].values
+        v_disk = df['Vdisk'].values
+        v_bulge = df['Vbulge'].values
+        
+        # Calculate Total Baryonic Velocity
+        v_baryon_sq = np.abs(v_gas)*v_gas + np.abs(v_disk)*v_disk + np.abs(v_bulge)*v_bulge
+        v_baryon = np.sqrt(np.maximum(0, v_baryon_sq))
+        
+        # Plot Newtonian (Baryons)
+        plt.plot(radii, v_baryon, label='Newtonian (Baryons)', color='red', linestyle='--', linewidth=2)
+        
+        # Plot Observed Data
+        plt.errorbar(radii, v_obs, yerr=v_err, fmt='o', color='black', label='Observed (SPARC)', markersize=4)
+        
+        # Calculate Machian Boost for these exact radii to check fit? 
+        # No, we plot the smooth theoretical curve derived above.
+        # But the smooth curve used Point Mass approx! 
+        # Ideally, we should plot the "Machian Prediction" using the ACTUAL Baryon distribution.
+        # V_machian^2 = V_baryon^2 + r * a_machian
+        
+        a_mach_data = [(c_val**2 / (2 * (phi_0 * (1 + ri/scale_length)**beta))) * (phi_0 * beta * (1 + ri/scale_length)**(beta - 1) / scale_length) * coupling for ri in radii]
+        v_mach_total_data = np.sqrt(v_baryon_sq + np.array(a_mach_data) * radii)
+        
+        # Plot the Machian Fit based on REAL Baryons (connected line)
+        plt.plot(radii, v_mach_total_data, label=f'Machian Fit', color='blue', linewidth=2)
+
+    else:
+        # Fallback if no data
+        plt.plot(r_model, v_machian_smooth, label=f'Machian Model (Analytic)', color='blue', linewidth=2)
+
+    plt.title(f"Galaxy Rotation Curve: NGC 6503")
     plt.xlabel("Radius (kpc)")
     plt.ylabel("Velocity (km/s)")
-    plt.legend()
+    plt.legend(loc='lower right')
     plt.grid(True, alpha=0.3)
-    plt.style.use('dark_background')
     
     plt.savefig(f"{output_dir}/fig1_rotation_curve.png", dpi=300)
     plt.close()
@@ -84,7 +124,7 @@ def generate_cosmology_plot():
     lcdm_ages = [cosmology.lookback_time_lcdm(z) for z in z_range]
     
     plt.figure(figsize=(10, 6))
-    plt.plot(z_range, machian_ages, label='Machian Universe (Static)', color='cyan', linewidth=2)
+    plt.plot(z_range, machian_ages, label='Machian Universe (Static)', color='blue', linewidth=2)
     plt.plot(z_range, lcdm_ages, label='Standard LCDM (Expanding)', color='red', linestyle='dashed')
     
     plt.title("Lookback Time vs Redshift")
@@ -92,7 +132,7 @@ def generate_cosmology_plot():
     plt.ylabel("Lookback Time (Gyr)")
     plt.legend()
     plt.grid(True, alpha=0.3)
-    plt.style.use('dark_background')
+    # Removed dark_background
     
     plt.savefig(f"{output_dir}/fig2_age_redshift.png", dpi=300)
     plt.close()
@@ -110,22 +150,22 @@ def generate_black_hole_plot():
     
     fig, ax1 = plt.subplots(figsize=(10, 6))
     
-    color = 'cyan'
+    color = 'blue'
     ax1.set_xlabel("Coordinate Time t (s) [Bob]")
     ax1.set_ylabel("Distance (Rs)", color=color)
     ax1.plot(t, r, color=color, linewidth=2, label="Trajectory")
     ax1.tick_params(axis='y', labelcolor=color)
-    ax1.axhline(y=1.0, color='white', linestyle=':', label="Event Horizon")
+    ax1.axhline(y=1.0, color='black', linestyle=':', label="Event Horizon")
     
     ax2 = ax1.twinx()  # instantiate a second axes that shares the same x-axis
     
-    color = 'magenta'
+    color = 'red'
     ax2.set_ylabel("Proper Time tau (s) [Alice]", color=color)  # we already handled the x-label with ax1
     ax2.plot(t, tau, color=color, linestyle='--', linewidth=2, label="Proper Time")
     ax2.tick_params(axis='y', labelcolor=color)
     
     plt.title("Black Hole Infall: The Solid State Transition")
-    plt.style.use('dark_background')
+    # Removed dark_background
     
     fig.tight_layout()  # otherwise the right y-label is slightly clipped
     plt.savefig(f"{output_dir}/fig3_black_hole_infall.png", dpi=300)

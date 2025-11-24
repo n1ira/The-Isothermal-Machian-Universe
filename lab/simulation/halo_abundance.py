@@ -186,7 +186,7 @@ ratio = n_mach / n_lcdm
 
 # Plot
 plt.figure(figsize=(10, 6))
-plt.semilogy(z_range, ratio, 'c-', linewidth=3)
+plt.semilogy(z_range, ratio, 'b-', linewidth=3)
 plt.axhline(1.0, color='k', linestyle=':')
 plt.axvline(10.0, color='r', linestyle='--', alpha=0.5)
 plt.text(10.5, 1e2, 'JWST Era (z>10)', rotation=90, color='r')

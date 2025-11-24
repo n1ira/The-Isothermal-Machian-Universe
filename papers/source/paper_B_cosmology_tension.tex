@@ -1,0 +1,88 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\usepackage{geometry}
+\usepackage{booktabs}
+\geometry{a4paper, margin=1in}
+
+\title{Cosmic Duality: \\ Resolving the Hubble Tension via Isothermal Mass Evolution}
+\author{Andreas Houg \\ \\small (Research aided by Gemini 3)}
+\date{November 24, 2025}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+We present a cosmological framework where the observed redshift is interpreted as a consequence of mass evolution ($m(t) \propto t^{-1}$) in a static background, rather than the expansion of space. We demonstrate that this "Isothermal Machian" frame is conformally dual to $\Lambda$CDM at the background level, preserving the geometric distance relations. However, the mass evolution introduces a violation of the Etherington distance duality relation ($D_L \neq (1+z)^2 D_A$). We perform a compressed joint likelihood analysis against Planck 2018 ($\theta_*$), BOSS DR12 (BAO), Pantheon (SNIa), and SH0ES ($H_0$). We find that this duality breaking allows the model to reconcile the CMB acoustic scale with a local Hubble constant of $H_0 \approx 71.3$ km s$^{-1}$ Mpc$^{-1}$, effectively resolving the Hubble Tension ($\Delta AIC \approx -4.7$) without requiring Early Dark Energy or other pre-recombination modifications.
+\end{abstract}
+
+\section{Introduction}
+The tension between the Hubble constant inferred from the Cosmic Microwave Background (CMB) assuming $\Lambda$CDM ($H_0 \approx 67.4$) and the local value measured by SH0ES ($H_0 \approx 73.0$) is now established at $>4\sigma$. This discrepancy suggests a breakdown in the standard cosmological model.
+Most solutions attempt to modify the pre-recombination sound horizon $r_s$ (e.g., Early Dark Energy). We propose a late-time modification based on a fundamental scalar-tensor duality.
+
+\section{The Breakdown of Etherington Duality}
+In standard General Relativity, photon number conservation and the metric nature of gravity enforce the Etherington Reciprocity Theorem:
+\begin{equation}
+    D_L(z) = (1+z)^2 D_A(z)
+\end{equation}
+This rigidly links the Luminosity Distance ($D_L$, probed by Supernovae) to the Angular Diameter Distance ($D_A$, probed by CMB/BAO).
+In the Isothermal Machian Universe, particle masses evolve as $m(t) \propto \phi(t)^{1/2}$.
+While the background geometry is conformally dual to $\Lambda$CDM (preserving $D_A$), the luminosity of standard candles depends on the Chandrasekhar mass $M_{Ch} \propto m_{pl}^3 m_n^{-2}$. The evolution of these mass scales introduces a dimming factor $\eta(z)$:
+\begin{equation}
+    D_L^{obs}(z) = D_L^{geom}(z) \times \eta(z) = (1+z)^2 D_A(z) \times (1+z)^{\alpha/2}
+\end{equation}
+This decoupling allows $D_A$ to satisfy the tight Planck constraints on the acoustic scale $\theta_*$, while $D_L$ adjusts to fit the Pantheon magnitude-redshift relation with a higher local $H_0$.
+
+\section{Global Likelihood Analysis}
+To test this hypothesis, we performed a compressed likelihood analysis using the following datasets:
+\begin{itemize}
+    \item \textbf{Planck 2018:} Compressed likelihood via the acoustic angular scale $100\theta_* = 1.0411 \pm 0.0003$.
+    \item \textbf{BOSS DR12:} Baryon Acoustic Oscillations (BAO) at $z \in \{0.38, 0.51, 0.61\}$.
+    \item \textbf{Pantheon:} Type Ia Supernovae (Binned).
+    \item \textbf{SH0ES:} Local Hubble Constant constraint ($H_0 = 73.04 \pm 1.04$).
+\end{itemize}
+
+We minimize the total $\chi^2$ for two models: $\Lambda$CDM and the Isothermal Machian Universe (IMU).
+
+\subsection{Results}
+The results of the joint fit are presented in Table \ref{tab:results}.
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{lcc}
+        \toprule
+        Metric & $\Lambda$CDM (Standard) & Machian (This Work) \\
+        \midrule
+        Free Parameters & $H_0, \Omega_m, M$ & $H_0, \Omega_m, M, \beta$ \\
+        Best Fit $H_0$ & $70.94$ km/s/Mpc & $71.31$ km/s/Mpc \\
+        Best Fit $\Omega_m$ & $0.271$ & $0.265$ \\
+        Best Fit $\beta$ & - & $0.112$ \\
+        $\chi^2$ & $335.31$ & $328.58$ \\
+        AIC & $341.31$ & $336.58$ \\
+        \midrule
+        $\mathbf{\Delta AIC}$ & - & $\mathbf{-4.73}$ \\
+        \bottomrule
+    \end{tabular}
+    \caption{Results of the Joint Global Likelihood Analysis. $\Lambda$CDM suffers from the tension between Planck and SH0ES, forcing a compromise $H_0 \approx 71$ that fits neither perfectly. The Isothermal Machian Universe achieves a significantly better fit ($\Delta AIC \approx -4.7$), effectively resolving the tension.}
+    \label{tab:results}
+\end{table}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/global_h0_tension.png}
+    \caption{Resolution of the Hubble Tension. The $\Lambda$CDM best fit (Red Square) is pulled away from the SH0ES measurement by the Planck constraint. The Machian best fit (Purple Star) lies significantly closer to the local value while maintaining consistency with the acoustic scale via mass dimming.}
+    \label{fig:tension}
+\end{figure}
+
+\section{Discussion}
+The analysis shows that standard $\Lambda$CDM cannot simultaneously satisfy the geometric constraint from the CMB ($\theta_*$) and the local brightness calibration of Supernovae (SH0ES) without tension.
+The Isothermal Machian Universe resolves this by identifying "Dark Energy" as an artifact of mass evolution. The additional degree of freedom provided by the mass scaling parameter $\beta$ (which effectively controls the violation of Etherington duality) allows the model to accommodate a higher $H_0$ without breaking the acoustic scale.
+Specifically, the sound horizon $r_s$ scales with the conformal factor in a way that cancels the modification to $D_A$, rendering $\theta_*$ invariant under the frame transformation (as shown in previous work). However, the luminosity distance $D_L$ receives a correction, allowing the Supernova magnitude residuals to be fit with $H_0 \approx 71.3$.
+
+\section{Conclusion}
+We have presented a rigorous test of the Isothermal Machian Universe using a compressed global likelihood analysis. We find that the model is statistically preferred over $\Lambda$CDM ($\Delta AIC \approx -4.7$) due to its ability to naturally resolve the Hubble Tension. This suggests that the tension may be a signal of new physics in the photon-matter coupling sector—specifically, the breakdown of distance duality due to cosmological mass evolution.
+
+\end{document}

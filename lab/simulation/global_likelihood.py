@@ -385,6 +385,9 @@ def run_analysis():
     plot_tension_results(res_lcdm.x[0], res_mach.x[0])
 
 def plot_tension_results(h0_lcdm, h0_mach):
+    # Ensure white background
+    plt.style.use('default')
+
     # Measurements
     h0_planck = 67.4
     err_planck = 0.5

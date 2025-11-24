@@ -10,6 +10,7 @@ node_modules/
 .DS_Store
 dist/
 build/
+!papers/build/
 .env
 papers/dont believe me - watch this.zip
 .agent/rules/git.md

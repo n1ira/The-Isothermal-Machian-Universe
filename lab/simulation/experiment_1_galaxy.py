@@ -26,7 +26,7 @@ def load_sparc_data(filepath):
     """Loads SPARC data for NGC 6503."""
     # Columns: Rad(kpc)  Vobs(km/s)  errV(km/s)  Vgas(km/s)  Vdisk(km/s)  Vbulge(km/s)
     # Skip 3 header lines
-    data = pd.read_csv(filepath, delim_whitespace=True, comment='#', 
+    data = pd.read_csv(filepath, sep='\s+', comment='#', 
                        names=['Rad', 'Vobs', 'errV', 'Vgas', 'Vdisk', 'Vbulge'])
     return data
 

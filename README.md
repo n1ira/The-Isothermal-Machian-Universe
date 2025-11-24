@@ -1,6 +1,6 @@
 # The Isothermal Machian Universe
 **Status:** ⚠️ **FRAMEWORK PROPOSED** (Under Review)
-See [Scientific Status & Limitations](SCIENTIFIC_STATUS.md) for a critical assessment.
+See [Scientific Status & Limitations](docs/SCIENTIFIC_STATUS.md) for a critical assessment.
 
 > "The universe is not expanding. Mass is evolving."
 

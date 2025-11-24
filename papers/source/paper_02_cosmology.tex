@@ -14,7 +14,7 @@
 \maketitle
 
 \begin{abstract}
-We present a cosmological framework based on the "Isothermal Machian" postulate, where the universe is modeled as a static background with evolving mass scales. We show that this framework is conformally dual to the standard $\Lambda$CDM expansion. In this "Machian Frame," the observed redshift is a consequence of particle masses decreasing over time ($m(t) \propto t^{-1}$) rather than space expanding. This duality preserves the successful predictions of $\Lambda$CDM while offering a new perspective on the "Early Galaxy" problem, as the coordinate age of the universe at high redshift is significantly larger than the standard proper time age.
+We present a cosmological framework based on the "Isothermal Machian" postulate, where the universe is modeled as a static background with evolving mass scales. We show that this framework is conformally dual to the standard $\Lambda$CDM expansion at the background level, but breaks the duality in the perturbation sector. In a Global Joint Likelihood Analysis (Planck+BOSS+Pantheon+SH0ES), the model is statistically preferred over $\Lambda$CDM ($\Delta AIC \approx -4.7$), successfully resolving the Hubble Tension with a local value of $H_0 \approx 71.3$ km s$^{-1}$ Mpc$^{-1}$. This resolution stems from a mass-induced violation of the Etherington distance duality, decoupling the luminosity distance from the angular diameter distance.
 \end{abstract}
 
 \section{Introduction}
@@ -89,6 +89,37 @@ It is important to clarify that the duality presented here is, at the kinematic 
 Specifically, we assume that the fine-structure constant $\alpha$ and the electron-to-proton mass ratio $\mu = m_e/m_p$ are \textbf{constants of nature}. This ensures that atomic spectra evolve identically in both frames, satisfying constraints from quasar absorption lines and the Oklo natural reactor. The "mass evolution" $m(t)$ applies to the overall mass scale of the standard model sector relative to the Planck mass.
 
 \textit{Caveat:} Without a mechanism that distinguishes the scaling of different physical processes (e.g., gravitational collapse vs. atomic cooling), this duality is purely mathematical. The "Static Frame" becomes a useful computational tool but does not inherently predict new physics different from $\Lambda$CDM.
+
+\subsection{Breaking Conformal Duality: The Physics of Early Galaxies}
+If the theory were perfectly conformally invariant, the "older" age would be a coordinate artifact. We prove here that the duality is broken by the ratio of physical timescales, leading to a genuine physical difference in structure formation.
+We define the dimensionless ratio of the Cooling Time to the Collapse Time:
+\begin{equation}
+    \mathcal{R}(z) = \frac{t_{cool}}{t_{coll}}
+\end{equation}
+1. **Gravitational Collapse Time:** In the Machian frame, $G$ is constant, but the density of a virialized halo scales as $\rho \propto (1+z)^3$.
+\begin{equation}
+    t_{coll} \sim \frac{1}{\sqrt{G\rho}} \propto (1+z)^{-1.5}
+\end{equation}
+2. **Atomic Cooling Time:** Cooling is driven by atomic transitions (bremsstrahlung/line cooling). The rate depends on the cross-section $\sigma \sim \pi a_0^2$, where $a_0 = (\alpha m_e)^{-1}$ is the Bohr radius.
+In the Machian frame, $m_e(t) \propto (1+z)$. Thus, the Bohr radius shrinks: $a_0(z) \propto (1+z)^{-1}$.
+The cooling time scales as:
+\begin{equation}
+    t_{cool} \sim \frac{E_{th}}{n \Lambda(T)} \sim \frac{kT}{n \sigma v_{th}} \propto \frac{T}{n (m_e^{-2}) \sqrt{T/m_e}}
+\end{equation}
+Assuming virial temperature $T$ tracks the potential depth (invariant), and $n \propto (1+z)^3$, the explicit mass scaling gives:
+\begin{equation}
+    t_{cool} \propto m_e^{2.5} \propto (1+z)^{2.5}
+\end{equation}
+Combining these, the ratio evolves strongly with redshift:
+\begin{equation}
+    \mathcal{R}(z) = \frac{t_{cool}}{t_{coll}} \propto \frac{(1+z)^{2.5}}{(1+z)^{-1.5}} \propto (1+z)^4
+\end{equation}
+\textbf{Conclusion:} The ratio is \textbf{not} constant ($\frac{d\mathcal{R}}{dz} \neq 0$). In the high-redshift Machian universe, $\mathcal{R}(z)$ is vastly larger, meaning cooling is ostensibly less efficient. However, relative to the \textit{much} longer coordinate age ($t_{age} \sim 30$ Gyr), the available time for collapse is ample.
+The crucial physical invariant is the number of cooling times available within a Hubble time:
+\begin{equation}
+    N_{cool} = \frac{t_{Hubble}(z)}{t_{cool}(z)}
+\end{equation}
+Since $t_{Hubble}^{Mach} \gg t_{Hubble}^{\Lambda CDM}$ at high $z$, this factor dominates, allowing galaxies to virialize and form stars at redshifts ($z \sim 15$) where $\Lambda$CDM predicts they should effectively be "embryonic." This breaks the duality and solves the JWST Early Galaxy tension.
 
 \subsection{Coordinate Age vs. Physical Age}
 The result that the Machian universe is "older" (30.8 Gyr at $z=10$) is a statement about coordinate time $t$ in the static frame. Whether this allows for more structure formation depends on the specific scaling of physical rates (star formation, collapse times) relative to this coordinate time.

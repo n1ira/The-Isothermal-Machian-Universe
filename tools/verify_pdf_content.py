@@ -3,7 +3,7 @@ import os
 import sys
 
 def verify_pdf(filename, expected_strings):
-    path = os.path.join("papers", filename)
+    path = os.path.join("papers/build", filename)
     if not os.path.exists(path):
         print(f"FAIL: {filename} not found.")
         return False
@@ -36,15 +36,19 @@ def main():
     print("Verifying PDF Content...")
     
     # Paper 1: Galaxy Rotation
+    # Changed "Disk Stability Warning" to "Secular Evolution"
     p1_checks = [
-        "Disk Stability Warning",
+        "Secular Evolution",
+        "Ostriker-Peebles",
         "synthetic survey"
     ]
     
     # Paper 2: Cosmology
+    # Added "Thermodynamic" arguments
     p2_checks = [
         "Etherington",
-        "Topological Invariant"
+        "Topological Invariant",
+        "Breaking Conformal Duality"
     ]
     
     # Paper 3: Black Holes
@@ -55,25 +59,28 @@ def main():
     ]
     
     # Paper 4: Lensing
-    p4_checks = []
+    # Updated to ensure Universal Coupling is mentioned
+    p4_checks = [
+        "Universal Conformal Coupling"
+    ]
 
     # Paper 5: Unified
+    # Removed "QCD Trigger" (qualitative), added rigorous Thin Shell and DHOST
     p5_checks = [
-        "QCD Trigger",
-        "Coincidence",
-        "DHOST",
+        "Thin-Shell Screening",
+        "DHOST Class I",
         "falsification test",
-        "Bohm quantum potential",
-        "DHOST Class I"
+        "Bohmian Quantum Potential"
     ]
 
     # Paper 6: CMB
+    # Removed "Heisenberg" (qualitative), added "Synchronous Gauge"
     p6_checks = [
-        "Heisenberg Derivation",
-        "Bohm"
+        "synchronous gauge",
+        "anisotropic stress"
     ]
 
-    # Dilaton
+    # Paper 7: Dilaton
     dilaton_checks = [
         "QCD Trace Anomaly",
         "dimensional transmutation"
@@ -84,15 +91,22 @@ def main():
         "Scale-Dependent Unitarity"
     ]
     
+    # Kill Shot Letter
+    letter_checks = [
+        "Thermodynamic Break",
+        "Standard Sirens"
+    ]
+    
     success = True
-    success &= verify_pdf("paper_1_galaxy_rotation.pdf", p1_checks)
-    success &= verify_pdf("paper_2_cosmology.pdf", p2_checks)
-    success &= verify_pdf("paper_3_black_holes.pdf", p3_checks)
-    success &= verify_pdf("paper_4_lensing.pdf", p4_checks)
-    success &= verify_pdf("paper_5_unified_field.pdf", p5_checks)
-    success &= verify_pdf("paper_6_cmb.pdf", p6_checks)
-    success &= verify_pdf("paper_7_dilaton.pdf", dilaton_checks)
-    success &= verify_pdf("paper_8_cyclic.pdf", p8_checks)
+    success &= verify_pdf("paper_01_galaxy_rotation.pdf", p1_checks)
+    success &= verify_pdf("paper_02_cosmology.pdf", p2_checks)
+    success &= verify_pdf("paper_03_black_holes.pdf", p3_checks)
+    success &= verify_pdf("paper_04_lensing.pdf", p4_checks)
+    success &= verify_pdf("paper_05_unified_field.pdf", p5_checks)
+    success &= verify_pdf("paper_06_cmb.pdf", p6_checks)
+    success &= verify_pdf("paper_07_dilaton.pdf", dilaton_checks)
+    success &= verify_pdf("paper_08_cyclic.pdf", p8_checks)
+    success &= verify_pdf("letter_kill_shot.pdf", letter_checks)
     
     if success:
         print("\nSUCCESS: All PDFs contain the verified 'Kill Shot' data.")

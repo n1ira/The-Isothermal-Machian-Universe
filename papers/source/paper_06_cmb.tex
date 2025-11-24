@@ -54,30 +54,25 @@ The factors of $(1+z)$ cancel exactly. The geometry of the CMB is invariant unde
 
 \section{Perturbation Analysis: Mimetic Gravity}
 
-To rigorous justify the formation of the acoustic peaks, we must ensure the scalar field can cluster on sub-horizon scales. A canonical scalar field has a sound speed $c_s^2 = 1$, which prevents the formation of the third acoustic peak.
-We employ **Mimetic Gravity**, enforcing the constraint via a Lagrange multiplier $\lambda$:
+To rigorously quantify the formation of acoustic peaks, we derive the linear perturbation equations for the Mimetic-DHOST scalar fluid.
+In the synchronous gauge, the line element is defined as:
 \begin{equation}
-    (\partial \phi)^2 = -w^2
+    ds^2 = -dt^2 + a^2(\delta_{ij} + h_{ij})dx^i dx^j
 \end{equation}
-However, simple mimetic gravity suffers from caustic instabilities in the non-linear regime. To cure this, we recognize that the classical mimetic constraint $(\partial \phi)^2 = \rho$ is only the hydrodynamic limit of a deeper quantum theory. If we treat the dark sector as a **superfluid condensate**, the order parameter is a macroscopic wavefunction $\Psi = \sqrt{\rho} e^{i\phi}$.
-The Schrödinger equation for this condensate leads to the Madelung hydrodynamic equations, which naturally include a **Quantum Pressure** term (the Bohm Potential):
-\begin{equation}
-    Q = -\frac{\hbar^2}{2m^2} \frac{\Box \sqrt{\rho}}{\sqrt{\rho}} \approx \frac{\lambda}{M^2} (\Box \phi)^2
-\end{equation}
-**Heisenberg Derivation:** This term is not ad-hoc; it is a direct consequence of the **Heisenberg Uncertainty Principle**. If the dark sector fluid elements are localized to within the Planck length ($\Delta x \sim L_p$), the uncertainty in momentum $\Delta p \sim \hbar/L_p$ generates a zero-point energy density.
-In the hydrodynamic formalism, this zero-point energy manifests exactly as the Bohm potential $Q$. Thus, the "higher-derivative regularization" is the inevitable manifestation of the **quantum nature of spacetime** preventing singularity formation.
-\begin{equation}
-    S_{mimetic} = \int d^4x \sqrt{-g} \left[ \lambda( (\partial \phi)^2 + w^2 ) + \frac{\gamma}{2M^2} (\Box \phi)^2 \right]
-\end{equation}
-On large cosmological scales (low $k$), quantum effects are negligible ($Q \approx 0$), preserving the Cold Dark Matter behavior. On small scales (high $k$), the quantum pressure resists gravitational collapse, preventing caustic singularities. This identifies the "sound speed" $c_s$ as the phonon velocity in the superfluid.
+The energy-momentum tensor for the scalar fluid is given by $T^\mu_\nu = (\rho_\phi + P_\phi)u^\mu u_\nu + P_\phi \delta^\mu_\nu + \Sigma^\mu_\nu$.
+For the mimetic constraint $(\partial \phi)^2 = -w^2$, the adiabatic sound speed vanishes ($c_s^2 = \delta P / \delta \rho \to 0$) in the limit of infinite mimetic mass. However, the higher-derivative DHOST term contributes an effective anisotropic stress $\sigma_\phi$.
 
-Consequently, the scalar fluid behaves exactly like a pressureless dust component (Cold Dark Matter) in the linear regime.
-The perturbation equations in the synchronous gauge become:
+The conservation equations $\nabla_\mu T^{\mu\nu} = 0$ yield the evolution of the density contrast $\delta_\phi = \delta \rho_\phi / \bar{\rho}_\phi$ and velocity divergence $\theta_\phi = \partial_i v^i$:
+\begin{align}
+    \dot{\delta}_\phi &= -(1+w)(\theta_\phi + \frac{\dot{h}}{2}) - 3\mathcal{H}(c_s^2 - w)\delta_\phi \\
+    \dot{\theta}_\phi &= -\mathcal{H}(1-3w)\theta_\phi + \frac{c_s^2 k^2}{1+w}\delta_\phi - k^2 \sigma_\phi
+\end{align}
+In our Isothermal framework, the background scalar field behaves as pressureless dust ($w=0$). The DHOST regulator ensures stability but, crucially, suppresses the anisotropic stress on linear scales ($\sigma_\phi \approx 0$) to avoid ghost instabilities.
+Substituting $w=0, c_s^2 \approx 0, \sigma_\phi \approx 0$, the equations simplify to:
 \begin{equation}
-    \dot{\delta}_\phi = -(1+w) (\theta + \frac{\dot{h}}{2})
+    \dot{\delta}_\phi = -\frac{\dot{h}}{2}, \quad \dot{\theta}_\phi = -\mathcal{H}\theta_\phi
 \end{equation}
-which matches the standard CDM evolution equation $\dot{\delta}_c = -\dot{h}/2$ (since $w \approx 0$ and $\theta \approx 0$ for mimetic dust).
-This allows us to validly map the scalar sector to the "CDM" parameter in standard Boltzmann solvers like CAMB. The scalar field physically provides the gravitational potential wells necessary to boost the odd acoustic peaks.
+These equations are \textit{mathematically identical} to the standard evolution equations for Cold Dark Matter (CDM). This proves that the Mimetic scalar field is dynamically indistinguishable from CDM in the linear regime. The scalar perturbations $\delta_\phi$ grow according to the standard rate, providing the necessary gravitational potential wells to boost the odd acoustic peaks in the CMB spectrum.
 
 \section{Results}
 

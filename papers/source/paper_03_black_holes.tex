@@ -37,13 +37,13 @@ This effectively "caps" the spacetime, resolving the Information Paradox by repl
 The Black Hole Information Paradox arises from the conflict between the Equivalence Principle (smooth horizon) and Unitarity (information preservation).
 Our model supports the principle of **Complementarity**:
 \begin{itemize}
-    \item \textbf{Infalling Observer (Alice):} Crosses the horizon in finite proper time. For her, the local effective physics remains valid until she hits the deep interior (Planck density).
-    \item \textbf{External Observer (Bob):} Sees the horizon as a "stiff" membrane where time dilation diverges. The information is thermally encoded on this surface.
+    \item **Infalling Observer (Alice):** Crosses the horizon in finite proper time. For her, the local effective physics remains valid until she hits the deep interior (Planck density).
+    \item **External Observer (Bob):** Sees the horizon as a "stiff" membrane where time dilation diverges. The information is thermally encoded on this surface.
 \end{itemize}
 The "Solid State" description is thus the dual thermodynamic description of the horizon as seen from infinity.
 
 \section{Simulation}
-We simulated the trajectory of an infalling observer ("Alice") using our `black\_hole.py` engine. We also calculated the Bekenstein-Hawking entropy for the horizon surface. For a $10 M_{\odot}$ black hole, the simulation yields a horizon entropy of approximately $1.51 \times 10^{79}$ bits.
+We simulated the trajectory of an infalling observer ("Alice") using our \texttt{black\_hole.py} engine. We also calculated the Bekenstein-Hawking entropy for the horizon surface. For a $10 M_{\odot}$ black hole, the simulation yields a horizon entropy of approximately $1.51 \times 10^{79}$ bits.
 
 Crucially, the simulation confirms the "Holographic Freezing" effect. As Alice approaches the horizon, her proper time remains finite ($\tau \approx 20$), while the coordinate time observed by Bob diverges ($t > 10^7$). The time dilation ratio $t/\tau$ exceeds $10^5$, confirming that for all practical purposes, the infalling object freezes onto the horizon surface from the perspective of the external universe.
 
@@ -55,65 +55,8 @@ Crucially, the simulation confirms the "Holographic Freezing" effect. As Alice a
 \end{figure}
 
 \section{Discussion: Alice vs Bob}
-The simulation confirms the dual nature of the horizon:
-\documentclass{article}
-\usepackage{graphicx}
-\usepackage{amsmath}
-\usepackage{hyperref}
-\usepackage{geometry}
-\geometry{a4paper, margin=1in}
+The simulation confirms the dual nature of the horizon.
 
-\title{Time as Computation: \\ Black Holes as Solid Information Boundaries}
-\author{Andreas Houg \\ \small (Research aided by Gemini 3)}
-\date{November 23, 2025}
-
-\begin{document}
-
-\maketitle
-
-\begin{abstract}
-We propose a resolution to the Black Hole Information Paradox by modeling the Event Horizon as a phase transition from "Fluid Time" to "Solid Time". In this "Solid State" model, the Event Horizon is not a point of no return but a region of maximum computational density where time dilation approaches infinity. We simulate the infall of an observer and show that while they cross the horizon in finite proper time, they asymptotically freeze from the perspective of the outside universe, effectively storing their information on the surface.
-\end{abstract}
-
-\section{Introduction}
-The conflict between General Relativity (smooth horizon) and Quantum Mechanics (unitary information preservation) suggests a breakdown in our understanding of spacetime at the horizon. We propose that this breakdown is captured by the effective field theory (EFT) of the Machian scalar field.
-
-\section{EFT Breakdown at the Horizon}
-\subsection{The Scalar Horizon}
-In our Scalar-Tensor framework, the black hole is not merely a vacuum solution but a soliton-like object where the conformal factor $A(\phi)$ diverges.
-Near the horizon $R_s$, the effective Planck length $L_p(\phi) \sim M_{pl}^{-1} A(\phi)$ grows. When $L_p(\phi) \sim R_s$, the system becomes strongly coupled, and the derivative expansion of the EFT breaks down.
-
-\subsection{The Fuzzball Limit}
-We interpret this breakdown not as a singularity, but as a phase transition to a non-geometric phase, similar to the **Fuzzball** proposal in String Theory.
-\begin{itemize}
-    \item **Exterior (EFT valid):** The metric is approximately Schwarzschild.
-    \item **Horizon (Phase Transition):** The conformal factor diverges, signaling the end of the classical manifold. The degrees of freedom transition from geometric metric modes to internal scalar excitations.
-\end{itemize}
-This effectively "caps" the spacetime, resolving the Information Paradox by replacing the vacuum interior with a "solid" state of stringy/scalar degrees of freedom that store information holographically.
-
-\section{Resolution of the Information Paradox}
-The Black Hole Information Paradox arises from the conflict between the Equivalence Principle (smooth horizon) and Unitarity (information preservation).
-Our model supports the principle of **Complementarity**:
-\begin{itemize}
-    \item \textbf{Infalling Observer (Alice):} Crosses the horizon in finite proper time. For her, the local effective physics remains valid until she hits the deep interior (Planck density).
-    \item \textbf{External Observer (Bob):} Sees the horizon as a "stiff" membrane where time dilation diverges. The information is thermally encoded on this surface.
-\end{itemize}
-The "Solid State" description is thus the dual thermodynamic description of the horizon as seen from infinity.
-
-\section{Simulation}
-We simulated the trajectory of an infalling observer ("Alice") using our `black_hole.py` engine. We also calculated the Bekenstein-Hawking entropy for the horizon surface. For a $10 M_{\odot}$ black hole, the simulation yields a horizon entropy of approximately $1.51 \times 10^{79}$ bits.
-
-Crucially, the simulation confirms the "Holographic Freezing" effect. As Alice approaches the horizon, her proper time remains finite ($\tau \approx 20$), while the coordinate time observed by Bob diverges ($t > 10^7$). The time dilation ratio $t/\tau$ exceeds $10^5$, confirming that for all practical purposes, the infalling object freezes onto the horizon surface from the perspective of the external universe.
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.8\textwidth]{figures/fig3_black_hole_infall.png}
-    \caption{Black Hole Infall. The Cyan line shows Alice's distance approaching the Horizon (white dotted line) as Coordinate Time (Bob's view) goes to infinity. The Magenta dashed line shows Alice's Proper Time, which remains finite.}
-    \label{fig:infall}
-\end{figure}
-
-\section{Discussion: Alice vs Bob}
-The simulation confirms the dual nature of the horizon:
 \section{Gravitational Wave Echoes and Holography}
 A critical test for any "solid" horizon model is the presence of gravitational wave echoes. If the horizon is a reflective surface, the ringdown phase of a binary merger should exhibit repeating pulses. LIGO has not observed such echoes, consistent with a purely absorptive horizon (standard GR).
 

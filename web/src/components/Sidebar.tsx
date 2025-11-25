@@ -1,12 +1,21 @@
 import { NavLink } from 'react-router-dom';
-import { LayoutDashboard, Atom, Orbit, Disc } from 'lucide-react';
+import { LayoutDashboard, Atom, Orbit, Activity } from 'lucide-react';
 
 const Sidebar = () => {
     const navItems = [
         { path: '/station', icon: LayoutDashboard, label: 'Station' },
-        { path: '/cosmology', icon: Atom, label: 'Cosmology' },
-        { path: '/galaxy', icon: Orbit, label: 'Galaxy Rotation' },
-        { path: '/black-hole', icon: Disc, label: 'Black Hole' },
+        { path: '/lesson/1.1', icon: Atom, label: '1.1 Scale Invariance' },
+        { path: '/lesson/1.2', icon: Orbit, label: '1.2 Master Equation' },
+        { path: '/lesson/1.3', icon: Orbit, label: '1.3 Dark Matter' },
+        { path: '/lesson/1.4', icon: Activity, label: '1.4 Galactic Carousel' },
+        { path: '/lesson/2.1', icon: Activity, label: '2.1 The Crisis' },
+        { path: '/lesson/2.2', icon: Orbit, label: '2.2 Cosmic Duality' },
+        { path: '/lesson/2.3', icon: Activity, label: '2.3 The Dimming' },
+        { path: '/lesson/2.4', icon: Orbit, label: '2.4 Solving the Puzzle' },
+        { path: '/lesson/3.1', icon: Activity, label: '3.1 The Smoking Gun' },
+        { path: '/lesson/3.2', icon: Orbit, label: '3.2 Impossible Galaxies' },
+        { path: '/lesson/4.1', icon: Activity, label: '4.1 The Solid Hole' },
+        { path: '/lesson/4.2', icon: Orbit, label: '4.2 The Eternal Bounce' },
     ];
 
     return (

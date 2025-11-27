@@ -3,24 +3,40 @@ import subprocess
 import sys
 import shutil
 
-def check_pdflatex():
-    """Check if pdflatex is available in the system path."""
-    if shutil.which("pdflatex") is None:
-        # Check common Windows install locations
+def find_pdflatex():
+    """Find pdflatex and return its full path, or None if not found."""
+    # First check if it's in PATH
+    pdflatex_path = shutil.which("pdflatex")
+    if pdflatex_path:
+        return pdflatex_path
+
+    # Detect if running in WSL
+    is_wsl = os.path.exists("/mnt/c")
+
+    if is_wsl:
+        # WSL paths to Windows MiKTeX
+        username = os.environ.get("USER", "")
+        common_paths = [
+            f"/mnt/c/Users/{username}/AppData/Local/Programs/MiKTeX/miktex/bin/x64",
+            "/mnt/c/Program Files/MiKTeX/miktex/bin/x64"
+        ]
+        exe_name = "pdflatex.exe"
+    else:
+        # Native Windows paths
         common_paths = [
             os.path.expanduser(r"~\AppData\Local\Programs\MiKTeX\miktex\bin\x64"),
             r"C:\Program Files\MiKTeX\miktex\bin\x64"
         ]
-        
-        for path in common_paths:
-            if os.path.exists(os.path.join(path, "pdflatex.exe")):
-                print(f"Found pdflatex at {path}. Adding to PATH.")
-                os.environ["PATH"] += os.pathsep + path
-                return True
-                
-        print("Error: 'pdflatex' not found. Please install a LaTeX distribution (e.g., TeX Live, MiKTeX).")
-        return False
-    return True
+        exe_name = "pdflatex.exe"
+
+    for path in common_paths:
+        full_path = os.path.join(path, exe_name)
+        if os.path.exists(full_path):
+            print(f"Found pdflatex at {full_path}")
+            return full_path
+
+    print("Error: 'pdflatex' not found. Please install a LaTeX distribution (e.g., TeX Live, MiKTeX).")
+    return None
 
 def generate_figures():
     """Run the figure generation script."""
@@ -50,33 +66,33 @@ def generate_figures():
         print(e.stderr)
         sys.exit(1)
 
-def compile_paper(paper_path):
+def compile_paper(paper_path, pdflatex_cmd):
     """Compile a single LaTeX paper."""
     # paper_path is now e.g. 'papers/source/paper_01.tex'
     paper_filename = os.path.basename(paper_path)
-    
+
     # Working directory for compilation should be 'papers/' so that 'figures/' paths resolve
     # We will copy the source file to 'papers/' temporarily, compile, then move PDF to 'papers/build/'
     # and delete the temporary tex file.
-    
+
     papers_root = "papers"
     source_dir = "papers/source"
     build_dir = "papers/build"
-    
+
     temp_tex_path = os.path.join(papers_root, paper_filename)
-    
+
     print(f"Preparing to compile {paper_filename}...")
-    
+
     try:
         # Copy .tex to papers/
         shutil.copy2(paper_path, temp_tex_path)
-        
+
         # Run pdflatex inside the papers directory
         for i in range(2):
             print(f"  Pass {i+1}...")
             result = subprocess.run(
-                ["pdflatex", "-interaction=nonstopmode", paper_filename], 
-                cwd=papers_root, 
+                [pdflatex_cmd, "-interaction=nonstopmode", paper_filename],
+                cwd=papers_root,
                 check=False,
                 capture_output=True,
                 text=True
@@ -91,7 +107,7 @@ def compile_paper(paper_path):
         pdf_filename = paper_filename.replace(".tex", ".pdf")
         src_pdf = os.path.join(papers_root, pdf_filename)
         dst_pdf = os.path.join(build_dir, pdf_filename)
-        
+
         if os.path.exists(src_pdf):
             if os.path.exists(dst_pdf):
                 os.remove(dst_pdf)
@@ -100,9 +116,9 @@ def compile_paper(paper_path):
         else:
             print(f"Error: PDF not found at {src_pdf}")
             return False
-            
+
         return True
-        
+
     except Exception as e:
         print(f"An unexpected error occurred: {e}")
         return False
@@ -133,8 +149,9 @@ def main():
     # 1. Generate Figures
     generate_figures()
 
-    # 2. Check for LaTeX
-    if not check_pdflatex():
+    # 2. Find pdflatex
+    pdflatex_cmd = find_pdflatex()
+    if not pdflatex_cmd:
         print("Skipping PDF compilation.")
         return
 
@@ -143,14 +160,14 @@ def main():
     if not os.path.exists(source_dir):
         print(f"Error: {source_dir} directory not found.")
         sys.exit(1)
-        
+
     # Ensure build dir exists
     if not os.path.exists("papers/build"):
         os.makedirs("papers/build")
 
     for filename in os.listdir(source_dir):
         if filename.endswith(".tex"):
-            compile_paper(os.path.join(source_dir, filename))
+            compile_paper(os.path.join(source_dir, filename), pdflatex_cmd)
 
     # 4. Cleanup in 'papers/'
     cleanup("papers")
